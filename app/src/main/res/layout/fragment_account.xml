@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#292929">
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="92dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="187dp"
+        android:layout_marginLeft="187dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="351dp"
+        android:src="@drawable/dm_logo" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#cc292929">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/backgroundprof"
+                app:civ_border_color="#000"
+                app:civ_border_width="4dp" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:text="Shehab Osama "
+                android:textAlignment="center"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold"
+
+                />
+
+
+            <LinearLayout
+                android:id="@+id/len_Email"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/username"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/email_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="Email address :"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="shehabosama0122421@gmail.com"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/len_phone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/len_Email"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/phone_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="phone number :"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/pone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="0120299161"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/len_address"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/len_phone"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/city_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="Address            :"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Nasr City"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/len_gender"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/len_address"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="Gender              :"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gender_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Male"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/len_worked"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginRight="30dp"
+                android:background="#bd9017" />
+
+            <LinearLayout
+                android:id="@+id/len_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/len_worked"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:drawableLeft="@drawable/ic_settings_black_24dp"
+                    android:padding="10dp"
+                    android:text=" Account settings "
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/len_worked"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/len_gender"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/work"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="Unit Info           :"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/work_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="unit 3 street 54"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/last_view"
+                android:layout_width="190dp"
+                android:layout_height="1dp"
+                android:layout_below="@+id/len_info"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="30dp"
+                android:background="#bd9017" />
+
+
+            <LinearLayout
+                android:id="@+id/len_personal_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/last_view"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/personal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="Personal information "
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/payments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/len_personal_information"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/payments_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="Payments "
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/notification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/payments"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/notification_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="Notification "
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_titel2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/notification"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="33dp"
+                android:layout_marginRight="30dp"
+                android:background="#bd9017"
+                android:paddingBottom="10dp" />
+
+            <LinearLayout
+                android:id="@+id/title2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_titel2"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/support"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:drawableLeft="@drawable/ic_hearing_black_24dp"
+                    android:padding="10dp"
+                    android:text="  Support "
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/view_last_of_title"
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_below="@+id/title2"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="30dp"
+                android:background="#bd9017" />
+
+            <LinearLayout
+                android:id="@+id/get_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_last_of_title"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/get_help_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="Get help "
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/give_us_feed_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/get_help"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/give_us_feed_back_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="Give us feedback "
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/terms_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/give_us_feed_back"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/terms_service_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:padding="10dp"
+                    android:text="Terms and service "
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
+
