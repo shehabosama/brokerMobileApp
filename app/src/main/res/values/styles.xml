@@ -20,6 +20,12 @@
     <style name="parent">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">@color/floatColor</item>
+
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/floatColor</item>
+        <item name="colorControlNormal">@color/floatColor</item>
+        <item name="colorControlActivated">@color/floatColor</item>
     </style>
 
     <style name="loginParent" parent="parent">

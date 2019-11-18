@@ -1,8 +1,6 @@
 package com.paus.paus_app;
 
-import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -20,10 +18,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.paus.paus_app.HelperStuffs.Message;
+import com.paus.paus_app.Login.LoginActivity;
+import com.paus.paus_app.SqlHelper.myDbAdapter;
 import com.paus.paus_app.fragments.Account_fragment;
 import com.paus.paus_app.fragments.BlankFragment;
 import com.paus.paus_app.fragments.Chat_rooms;
-import com.paus.paus_app.fragments.Installment_fragemnt;
 import com.paus.paus_app.fragments.Installment_fragmet_two;
 import com.paus.paus_app.fragments.QrCodeFragment;
 import com.paus.paus_app.fragments.Rentals_fragemnt;
@@ -52,13 +52,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     TextView Navusername;
     FrameLayout relativeLayout;
     BottomNavigationViewEx bottomNavigationViewEx;
+    myDbAdapter helper;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        helper = new myDbAdapter(this);
 
-
+        Message.message(getApplicationContext(),helper.getData());
         relativeLayout = findViewById(R.id.container_body);
         mtoolbar=(Toolbar)findViewById(R.id.homeToolbar);
         setSupportActionBar(mtoolbar);
@@ -234,7 +236,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
                 break;
             case R.id.logout_nav:
-
+                String data = helper.getEmployeeName();
+                helper.delete(data);
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
                 break;
 

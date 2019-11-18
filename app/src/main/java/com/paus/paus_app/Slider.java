@@ -9,9 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.paus.paus_app.Adapters.ViewPagerAdapter;
+import com.paus.paus_app.Login.LoginActivity;
+import com.paus.paus_app.SqlHelper.myDbAdapter;
 
 import java.util.TimerTask;
 
@@ -24,11 +25,29 @@ public class Slider extends AppCompatActivity {
 //    Button btn1,btn2,btn3;
     Button button;
     ImageView imageView;
+    myDbAdapter helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.slider_activity);
         viewPager = (ViewPager)findViewById(R.id.view_pager);
+        helper = new myDbAdapter(this);
+        String data = helper.getData();
+
+        if (data.length()>0){
+            startActivity(new Intent(getApplicationContext(),MainActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
+        }else {
+
+
+            SharedPreferences sharedPreferences_ret = getSharedPreferences("Data", Context.MODE_PRIVATE);
+            type = sharedPreferences_ret.getString("kind_person", DEFAULT);
+            if (type != null) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            }
+
+        }
+
         button = findViewById(R.id.next_btn);
         button.setVisibility(View.GONE);
         imageView = findViewById(R.id.image_next);
@@ -93,17 +112,16 @@ public class Slider extends AppCompatActivity {
       // timer.scheduleAtFixedRate(new MyTimeTask(),2000,2000);
 
         //btn1.setBackgroundResource(R.drawable.button_c2);
-
-        SharedPreferences sharedPreferences_ret = getSharedPreferences("Data", Context.MODE_PRIVATE);
-        type = sharedPreferences_ret.getString("kind_person", DEFAULT);
-        if (type!=null)
-        {
-            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-        }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                type="test";
+                SharedPreferences sharedPreferences=getSharedPreferences("Data",MODE_PRIVATE);
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putString("kind_person",type);
+                editor.apply();
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
 
             }
         });

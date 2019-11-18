@@ -85,7 +85,7 @@ public class WebService  {
         Retrofit retrofit = new Retrofit.Builder().client(getUnsafeOkHttpClient().build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl("https://us-central1-mychat-461bf.cloudfunctions.net/")
+                .baseUrl(Urls.MAIN_URL)
                 .build();
         api = retrofit.create(API.class);
     }
