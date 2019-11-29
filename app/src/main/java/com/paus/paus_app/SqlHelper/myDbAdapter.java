@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.paus.paus_app.HelperStuffs.Message;
+import com.paus.paus_app.common.HelperStuffs.*;
 
 public class myDbAdapter {
     myDbHelper myhelper;

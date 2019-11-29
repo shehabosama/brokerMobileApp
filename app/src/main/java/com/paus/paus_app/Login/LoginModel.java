@@ -1,9 +1,9 @@
 package com.paus.paus_app.Login;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import com.paus.paus_app.WebServiceapi.WebService;
-import com.paus.paus_app.model.LoginResponse;
-import com.paus.paus_app.model.User;
+import com.paus.paus_app.common.network.WebService;
+import com.paus.paus_app.common.model.LoginResponse;
+import com.paus.paus_app.common.model.User;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import retrofit2.Call;

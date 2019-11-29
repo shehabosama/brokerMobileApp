@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.paus.paus_app.HelperStuffs.Message;
+import com.paus.paus_app.common.HelperStuffs.Message;
 import com.paus.paus_app.Login.LoginActivity;
 import com.paus.paus_app.SqlHelper.myDbAdapter;
 import com.paus.paus_app.fragments.Account_fragment;
@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //getting bottom navigation view and attaching the listener
         //BottomNavigationView navigation = findViewById(R.id.customBottomBar);
         bottomNavigationViewEx.setOnNavigationItemSelectedListener(MainActivity.this);
+        bottomNavigationViewEx.setSelectedItemId(R.id.action_qrcode);
+
     }
 
     @Override

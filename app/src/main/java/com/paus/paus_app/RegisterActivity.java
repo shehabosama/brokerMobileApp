@@ -7,11 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.paus.paus_app.HelperStuffs.Message;
+import com.paus.paus_app.common.HelperStuffs.Message;
 import com.paus.paus_app.Login.LoginActivity;
-import com.paus.paus_app.WebServiceapi.WebService;
-import com.paus.paus_app.model.MainResponse;
-import com.paus.paus_app.model.User;
+import com.paus.paus_app.common.network.WebService;
+import com.paus.paus_app.common.model.MainResponse;
+import com.paus.paus_app.common.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;

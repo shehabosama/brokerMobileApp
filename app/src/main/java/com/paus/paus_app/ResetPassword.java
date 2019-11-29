@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.paus.paus_app.HelperStuffs.Message;
+import com.paus.paus_app.common.HelperStuffs.Message;
 import com.paus.paus_app.Login.LoginActivity;
-import com.paus.paus_app.WebServiceapi.WebService;
-import com.paus.paus_app.model.MainResponse;
+import com.paus.paus_app.common.network.WebService;
+import com.paus.paus_app.common.model.MainResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;

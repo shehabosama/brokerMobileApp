@@ -1,6 +1,6 @@
 package com.paus.paus_app.Login;
 
-import com.paus.paus_app.model.User;
+import com.paus.paus_app.common.model.User;
 
 public interface LoginContract
 {

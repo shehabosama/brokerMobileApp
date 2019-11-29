@@ -4,12 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.paus.paus_app.ForgetPassword;
-import com.paus.paus_app.HelperStuffs.Message;
+import com.paus.paus_app.common.HelperStuffs.Message;
 import com.paus.paus_app.MainActivity;
 import com.paus.paus_app.R;
 import com.paus.paus_app.RegisterActivity;
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         progressDialog = new ProgressDialog(this);
         presenter = new LoginModel(this);
         helper = new myDbAdapter(this);
+        btnLogin.setOnClickListener(this);
     }
     public void viewRegisterClicked(View view)
     {
@@ -96,10 +98,18 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         switch(view.getId())
         {
             case R.id.btn_login:
+
                 String strEmail = editTextEmail.getText().toString();
                 String strPassword = editTextPassword.getText().toString();
-                showProgress();
-                presenter.performLogin(strEmail,strPassword);
+                if(TextUtils.isEmpty(strEmail)||TextUtils.isEmpty(strPassword)){
+                    Message.message(getApplicationContext(),"Please Enter Email and Password");
+
+                    hideProgress();
+                }else {
+                    showProgress();
+                    presenter.performLogin(strEmail,strPassword);
+                }
+
                 break;
             default :
                 Message.message(getApplicationContext(),"");
