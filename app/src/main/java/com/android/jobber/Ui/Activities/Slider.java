@@ -35,6 +35,9 @@ public class Slider extends BaseActivity {
         setListeners();
     }
 
+    public void hello (){
+
+    }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
