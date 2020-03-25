@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Ui.fragments.PublishingFragment.PublishingFragment"
+    android:background="#292929">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:textStyle="bold"
+            android:hint="Write what do you want about your product"
+            android:textColor="@color/whiteTextColor"
+            android:textColorHint="#8B8A8A"
+            android:backgroundTint="#00FFFFFF"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:id="@+id/editTextDescription"
+            />
+
+
+        <LinearLayout
+            android:layout_width="277dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/login_button_bk"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spin_search"
+                android:layout_width="247dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/mtoolbar"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/login_button_bk"
+                android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+                />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_expand_more_black"
+                android:id="@+id/image_icon"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="245dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:background="@drawable/login_button_bk"
+            android:layout_marginLeft="1dp">
+
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:id="@+id/radio">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Rent"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/whiteTextColor"
+                    android:buttonTint="@color/black"
+                    android:textStyle="bold"
+                    android:id="@+id/btn_rent"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Conveyance"
+                    android:backgroundTint="@color/whiteTextColor"
+                    android:buttonTint="@color/black"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:id="@+id/conveyance"
+                    />
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="277dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:background="@drawable/login_button_bk"
+            android:layout_marginLeft="1dp">
+
+
+            <Button
+                android:id="@+id/btn_add_location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/login_button_bk"
+                android:drawableRight="@drawable/ic_add_location_black_24dp"
+                android:drawablePadding="-20dp"
+                android:paddingRight="5dp"
+                android:text="Add Location"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="245dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:background="@drawable/login_button_bk"
+            android:layout_marginLeft="1dp">
+
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:id="@+id/radio_type_product">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="flat"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/whiteTextColor"
+                    android:buttonTint="@color/black"
+                    android:textStyle="bold"
+                    android:id="@+id/flat"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="land"
+                    android:backgroundTint="@color/whiteTextColor"
+                    android:buttonTint="@color/black"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:id="@+id/land"
+                    />
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="1dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:background="@drawable/login_button_bk"
+            android:layout_marginLeft="1dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:hint="Price $"
+                android:textColor="@color/black"
+                android:textColorHint="#0F0F0F"
+                android:inputType="numberDecimal"
+                android:backgroundTint="#000000"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:id="@+id/editTextPrice"
+                android:layout_marginHorizontal="20dp"
+
+                />
+
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycler_selected_photo"
+            android:layout_marginVertical="10dp"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_load_photo"
+        android:background="@drawable/login_button_bk"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp">
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:src="@drawable/camera"
+            android:layout_marginTop="5dp"
+                android:id="@+id/capture"
+        />
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:src="@drawable/gallery"
+            android:layout_marginTop="5dp"
+            android:id="@+id/select_from_gallery"
+            />
+    </LinearLayout>
+</RelativeLayout>

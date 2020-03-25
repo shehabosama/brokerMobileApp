@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/loginCard"
@@ -20,18 +20,18 @@
 
         <TextView
             style="@style/headerTextPrimary"
-            android:text="Login"
+            android:text="Verification"
             android:layout_marginTop="@dimen/loginViewsMargin"/>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputEmail"
             style="@style/parent"
             android:textColorHint="#fff"
             android:layout_marginTop="@dimen/loginViewsMargin">
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputPassword"
             style="@style/parent"
             android:textColorHint="#fff"
@@ -47,7 +47,7 @@
                 android:maxLines="1"
                 android:inputType="number"
                 android:textColorHint="#fff"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
@@ -63,4 +63,4 @@
 
 
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

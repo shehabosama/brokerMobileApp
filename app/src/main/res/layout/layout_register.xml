@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/loginCard"
@@ -20,7 +20,7 @@
             android:text="@string/register"
             android:layout_marginTop="@dimen/loginViewsMargin"/>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top"
             android:textColorHint="#ffff"
@@ -35,9 +35,9 @@
                 android:hint="Name"
                 android:textColorHint="#fff"
                 android:textColor="@color/floatColor"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top"
             android:textColorHint="#ffff"
@@ -50,9 +50,9 @@
                 android:hint="@string/login_email_hint"
                 android:textColor="@color/floatColor"
                 />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top"
             android:textColorHint="#ffff"
@@ -64,9 +64,9 @@
                 android:maxLines="1"
                 android:hint="@string/login_password_hint"
                 android:textColor="@color/floatColor"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top"
             android:textColorHint="#ffff"
@@ -78,8 +78,20 @@
                 android:maxLines="1"
                 android:inputType="textPassword"
                 android:textColor="@color/floatColor"/>
-        </android.support.design.widget.TextInputLayout>
-
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/parent"
+            android:layout_marginTop="@dimen/signup_text_margin_top"
+            android:textColorHint="#ffff"
+            android:theme="@style/parent">
+            <EditText
+                android:id="@+id/editTextPhoneNumber"
+                style="@style/modifiedEditText"
+                android:hint="Phone Number"
+                android:maxLines="1"
+                android:inputType="number"
+                android:textColor="@color/floatColor"/>
+        </com.google.android.material.textfield.TextInputLayout>
         <Button
             style="@style/loginButton"
             android:layout_gravity="center"
@@ -98,4 +110,4 @@
             android:layout_marginTop="@dimen/loginViewsMargin"/>
 
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

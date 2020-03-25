@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="2dp"
+        android:gravity="end"
+        android:paddingRight="10dp"
+        android:text="12:20 AM"
+        android:textSize="11sp"
+        android:textColor="@color/whiteTextColor"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/sent_message">
+
+        <TextView
+            android:id="@+id/tv_message_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:gravity="right"
+            android:minWidth="10dp"
+            android:text=" إذا ما طمحت الى غاية .. ركبت المنى ونسيت الحذر  "
+            android:textColor="#000" />
+
+    </FrameLayout>
+</LinearLayout>

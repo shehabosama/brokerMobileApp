@@ -1,153 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Account_fragment"
+    tools:context=".Ui.fragments.ProfileFragment.ProfileFragment"
     android:orientation="vertical"
     android:layout_alignParentRight="true"
     android:background="#292929">
 
 <include layout="@layout/app_bar_layout"/>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/cir"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/recycler_chat"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/recycler_chat"
-        android:src="@drawable/logo_chat"
-        android:layout_marginLeft="4dp"
-        android:layout_toRightOf="@+id/recycler_chat" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="22dp"
-        android:layout_toEndOf="@+id/cir"
-        android:layout_toRightOf="@+id/cir"
-        android:text="Dm Development"
-        android:textColor="#fff" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="83dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/sent_message"
-        android:gravity="right"
-        tools:ignore="RtlHardcoded"
-        android:id="@+id/line_chat">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:textSize="15dp"
-            android:text="hello welcome to the Dm development"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/line_chat2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="131dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:background="@drawable/received_message"
-        android:gravity="left"
-        tools:ignore="RtlHardcoded">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="can you help me please"
-            android:textColor="#000"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-    </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/line_chat3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="183dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/sent_message"
-        android:gravity="right"
-        tools:ignore="RtlHardcoded">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/line_chat3"
-            android:layout_alignLeft="@+id/line_chat3"
-            android:layout_alignTop="@+id/line_chat3"
-            android:text="sure sir please tell me what's your problem"
-            android:textColor="#000000"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_chat"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-   >
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/swipe"
+        android:layout_margin="10dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_chat"
+            android:layout_width="369dp"
+            android:layout_height="match_parent"
+            >
 
-    </android.support.v7.widget.RecyclerView>
-
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <LinearLayout
         android:id="@+id/re"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:background="#e4e4e4"
-        android:gravity="bottom|right"
-        android:orientation="horizontal"
+        android:baselineAlignBottom="true"
+        android:gravity="bottom"
+        android:orientation="horizontal">
 
-        >
+        <ImageView
+            android:id="@+id/select_file"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/logo_chat" />
 
-
-
-        <EditText
-            android:id="@+id/edit_message"
-            android:layout_width="300dp"
-            android:backgroundTint="#000"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:width="1dp" />
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_background_chat"
+            android:layout_gravity="center_vertical">
+            <EditText
+                android:id="@+id/edit_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="10dp"
+                android:hint="Type a message"
+                android:textSize="15sp"
+                android:backgroundTint="#00FFFFFF"
+
+                />
+        </LinearLayout>
+
 
         <ImageView
             android:id="@+id/sent_content"
-            android:layout_width="62dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_margin="5dp"
             android:src="@drawable/ic_send_mov_24dp" />
     </LinearLayout>
 
 
-</RelativeLayout>
+
+
+</LinearLayout>

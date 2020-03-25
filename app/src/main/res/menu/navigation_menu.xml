@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/action_family_nav"
+        android:id="@+id/action_requests_nav"
         android:enabled="true"
-        android:icon="@drawable/ic_wc_black_24dp"
-        android:title="Family Members"
+        android:icon="@drawable/ic_insert_invitation_black_24dp"
+        android:title="Clients Requests"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/action_rentals_nav"
+        android:id="@+id/action_brokers"
         android:enabled="true"
         android:icon="@drawable/ic_group_black_24dp"
-        android:title="Rentals"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/action_installments_nav"
-        android:enabled="true"
-        android:icon="@drawable/ic_payment_black_24dp"
-        android:title="Installments"
+        android:title="Brokers"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_chat_nav"
@@ -33,18 +28,25 @@
         android:title="Invitation"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/services_nav"
+        android:id="@+id/favorite_nav"
         android:enabled="true"
-        android:icon="@drawable/ic_build_black_24dp"
-        android:title="Services"
+        android:icon="@drawable/ic_star_gold"
+        android:title="Favorites"
         app:showAsAction="ifRoom"/>
     -<item android:title="Other" >
 
 
     -<menu>
-    <item android:title="Settings" android:icon="@drawable/ic_settings_black_24dp" android:id="@+id/setting"/>
+    <item
+        android:title="Settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:id="@+id/setting"
+        />
 
-    <item android:title="Logout" android:icon="@drawable/logout" android:id="@+id/logout_nav"/>
+    <item android:title="Logout"
+        android:icon="@drawable/logout"
+        android:id="@+id/logout_nav"
+        />
 
 
 </menu>

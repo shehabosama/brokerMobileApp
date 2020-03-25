@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.BlankFragment"
+    tools:context=".Ui.fragments.BlankFragment"
     android:background="#1b1b1b">
 
     <!-- TODO: Update blank fragment layout -->
@@ -19,7 +19,7 @@
         android:textColor="#fff"/>
 
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

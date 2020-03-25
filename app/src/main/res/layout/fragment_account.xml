@@ -7,22 +7,27 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 android:background="#292929">
 
-    <ImageView
-        android:layout_width="180dp"
-        android:layout_height="92dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="187dp"
-        android:layout_marginLeft="187dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        android:layout_marginBottom="351dp"
-        android:src="@drawable/dm_logo" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginHorizontal="30dp"
+            android:src="@drawable/new_logo"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/whiteTextColor"
+            android:text="Real estate services"
+            android:textSize="20dp"
+            android:fontFamily="serif-monospace"/>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -62,7 +67,19 @@ android:background="#292929">
                 android:textStyle="bold"
 
                 />
-
+            <ImageView
+                android:id="@+id/verfiy"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_above="@+id/len_Email"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="137dp"
+                android:layout_marginEnd="82dp"
+                android:layout_marginBottom="15dp"
+                android:layout_toEndOf="@+id/username"
+                android:src="@drawable/verfiy_logo"/>
 
             <LinearLayout
                 android:id="@+id/len_Email"
@@ -114,7 +131,7 @@ android:background="#292929">
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/pone"
+                    android:id="@+id/phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -144,7 +161,7 @@ android:background="#292929">
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/city"
+                    android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -185,20 +202,23 @@ android:background="#292929">
                     android:textSize="12dp" />
             </LinearLayout>
 
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@+id/len_worked"
+                android:layout_below="@+id/len_gender"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="23dp"
                 android:layout_marginRight="30dp"
                 android:background="#bd9017" />
 
+
             <LinearLayout
                 android:id="@+id/len_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/len_worked"
+                android:layout_below="@+id/len_gender"
                 android:layout_marginTop="40dp"
                 android:orientation="horizontal">
 
@@ -218,35 +238,7 @@ android:background="#292929">
             </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/len_worked"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_below="@+id/len_gender"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/work"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:padding="10dp"
-                    android:text="Unit Info           :"
-                    android:textAlignment="center"
-                    android:textColor="#fff"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/work_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="unit 3 street 54"
-                    android:textAlignment="center"
-                    android:textColor="#fff"
-                    android:textSize="12dp" />
-            </LinearLayout>
 
             <View
                 android:id="@+id/last_view"
@@ -281,57 +273,15 @@ android:background="#292929">
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/payments"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/len_personal_information"
-                android:layout_marginTop="0dp"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/payments_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:padding="10dp"
-                    android:text="Payments "
-                    android:textAlignment="center"
-                    android:textColor="#fff"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/notification"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/payments"
-                android:layout_marginTop="0dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/notification_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:padding="10dp"
-                    android:text="Notification "
-                    android:textAlignment="center"
-                    android:textColor="#fff"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
 
             <View
                 android:id="@+id/view_titel2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@+id/notification"
+                android:layout_below="@+id/len_personal_information"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="33dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginRight="30dp"
                 android:background="#bd9017"
                 android:paddingBottom="10dp" />
@@ -341,7 +291,7 @@ android:background="#292929">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view_titel2"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <TextView

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_filter"
+        android:enabled="true"
+        android:icon="@drawable/ic_tune_black_72dp"
+        android:title="Filter"
+        app:showAsAction="ifRoom">
+
+        <menu>
+           <item android:id="@+id/action_multi_option"
+            android:enabled="true"
+            android:title="Multi Option Filter"
+            app:showAsAction="ifRoom"/>
+
+            <item android:id="@+id/action_by_name"
+                android:enabled="true"
+                android:title="Filter by Name"
+                app:showAsAction="ifRoom"/>
+        </menu>
+    </item>
+
+</menu>
