@@ -42,6 +42,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.4.7'
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
+
+
 
 }
 apply plugin: 'com.google.gms.google-services'

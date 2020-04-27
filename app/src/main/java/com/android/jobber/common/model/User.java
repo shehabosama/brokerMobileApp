@@ -27,4 +27,6 @@ public class User  {
     public int phoneNo;
     @SerializedName("gender")
     public int gender;
+    @SerializedName("user_type")
+    public String userType;
 }

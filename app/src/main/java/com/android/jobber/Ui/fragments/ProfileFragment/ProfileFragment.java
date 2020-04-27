@@ -2,14 +2,19 @@ package com.android.jobber.Ui.fragments.ProfileFragment;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.android.jobber.R;
@@ -19,12 +24,22 @@ import com.android.jobber.common.HelperStuffs.Message;
 import com.android.jobber.common.SqlHelper.myDbAdapter;
 import com.android.jobber.common.base.BaseFragment;
 import com.android.jobber.common.network.Urls;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.document.FirebaseVisionDocumentText;
+import com.google.firebase.ml.vision.document.FirebaseVisionDocumentTextRecognizer;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
+
+import java.io.FileNotFoundException;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -59,6 +74,7 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
     @Override
     protected void initializeViews(View v) {
 
+        
         progressDialog = new ProgressDialog(getActivity());
         textViewGender =v.findViewById(R.id.gender_type);
         textViewPhone = v.findViewById(R.id.phone);
@@ -108,6 +124,7 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
                 if (orgUri != null)
                 {
                     profileImage.setImageURI(orgUri);
+                //    runCloudTextRecognition();
                     presenter.performUpdateProfilePhoto(orgUri, AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0"),getActivity()
                     ,myDbAdapter.getEmployeeName("phone"),myDbAdapter.getEmployeeName("email"),myDbAdapter.getEmployeeName("gender"),myDbAdapter.getEmployeeName("name")
                     ,myDbAdapter.getEmployeeName("address"));
@@ -167,5 +184,75 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
     @Override
     public void hideProgress() {
         progressDialog.dismiss();
+    }
+    private Bitmap decodeBitmapUri(Context ctx, Uri uri) throws FileNotFoundException {
+        int targetW = 600;
+        int targetH = 600;
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(ctx.getContentResolver().openInputStream(uri), null, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+
+        return BitmapFactory.decodeStream(ctx.getContentResolver()
+                .openInputStream(uri), null, bmOptions);
+    }
+
+
+    private void runCloudTextRecognition() {
+       // mCloudButton.setEnabled(false);
+        FirebaseVisionImage image = null;
+        try {
+            image = FirebaseVisionImage.fromBitmap(decodeBitmapUri(getActivity(),orgUri));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        FirebaseVisionDocumentTextRecognizer recognizer = FirebaseVision.getInstance()
+                .getCloudDocumentTextRecognizer();
+        recognizer.processImage(image)
+                .addOnSuccessListener(
+                        new OnSuccessListener<FirebaseVisionDocumentText>() {
+                            @Override
+                            public void onSuccess(FirebaseVisionDocumentText texts) {
+                              //  mCloudButton.setEnabled(true);
+                                processCloudTextRecognitionResult(texts);
+                            }
+                        })
+                .addOnFailureListener(
+                        new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Task failed with an exception
+                              //  mCloudButton.setEnabled(true);
+                                e.printStackTrace();
+                            }
+                        });
+    }
+
+    private void processCloudTextRecognitionResult(FirebaseVisionDocumentText text) {
+        // Task completed successfully
+        if (text == null) {
+        //    showToast("No text found");
+            return;
+        }
+       // mGraphicOverlay.clear();
+        List<FirebaseVisionDocumentText.Block> blocks = text.getBlocks();
+        for (int i = 0; i < blocks.size(); i++) {
+            List<FirebaseVisionDocumentText.Paragraph> paragraphs = blocks.get(i).getParagraphs();
+            for (int j = 0; j < paragraphs.size(); j++) {
+                List<FirebaseVisionDocumentText.Word> words = paragraphs.get(j).getWords();
+                for (int l = 0; l < words.size(); l++) {
+
+                    Log.e(TAG, "processCloudTextRecognitionResult: "+words.get(1) );
+              //      CloudTextGraphic cloudDocumentTextGraphic = new CloudTextGraphic(mGraphicOverlay,
+                            //words.get(l));
+                   // mGraphicOverlay.add(cloudDocumentTextGraphic);
+                }
+            }
+        }
     }
 }

@@ -27,7 +27,7 @@ public class PresenterRegister implements RegisterContract.Presenter , RegisterC
     }
 
     @Override
-    public void performRegister(String userName, final String email, final String password, String confirmPassword,  String isAdmin,String phoneNo) {
+    public void performRegister(String userName, final String email, final String password, String confirmPassword,  String isAdmin,String phoneNo,String userType) {
         mLoginView.showProgress();
 
         if (TextUtils.isEmpty(userName) ||
@@ -40,12 +40,15 @@ public class PresenterRegister implements RegisterContract.Presenter , RegisterC
             mLoginView.loginValidations();
         } else if(!isEmailValid(email)){
             mLoginView.emailInvalid();
+        } else if(TextUtils.isEmpty(userType)){
+            mLoginView.loginValidations();
         }else {
             User user = new User();
             user.username = userName;
             user.email = email;
             user.password = password;
             user.phoneNo = Integer.parseInt(phoneNo);
+            user.userType = userType;
             WebService.getInstance(true).getApi().registerUser(user).enqueue(new Callback<MainResponse>() {
                 @Override
                 public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {

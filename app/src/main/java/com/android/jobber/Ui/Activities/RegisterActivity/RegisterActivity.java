@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
 import com.android.jobber.Ui.Activities.Login.LoginActivity;
 import com.android.jobber.R;
@@ -19,6 +20,8 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     private PresenterRegister presenter;
     private EditText editTExtusername,editTextEmail,editTextPassword,editTextConfirmPassword,editTextPhoneNumber;
     private Button btnRegister;
+    private RadioGroup userType;
+    private String uType="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     @Override
     public void loginValidations() {
 
+        hideProgress();
         Message.message(RegisterActivity.this, "pleas fill all the flied");
     }
 
@@ -64,11 +68,13 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
 
     @Override
     public void loginError() {
+        hideProgress();
         Message.message(RegisterActivity.this, "Something Went wrong.");
     }
 
     @Override
     public void emailInvalid() {
+        hideProgress();
         Message.message(RegisterActivity.this, "Please this is not Email make sure from your email.");
     }
 
@@ -92,13 +98,31 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
         btnRegister = findViewById(R.id.btn_register);
         progressDialog = new ProgressDialog(this);
         presenter = new PresenterRegister(this,this);
+        userType = findViewById(R.id.userType);
     }
 
 
     @Override
     protected void setListeners() {
         btnRegister.setOnClickListener(btnRegisterListener);
+        userType.setOnCheckedChangeListener(userTypeListener);
     }
+    private RadioGroup.OnCheckedChangeListener userTypeListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup radioGroup, int i) {
+            View radioButton = radioGroup.findViewById(i);
+            int index = radioGroup.indexOfChild(radioButton);
+            switch (index){
+                case 0:
+                    uType = "1";
+                    break;
+                case 1:
+                    uType = "0";
+                    break;
+
+            }
+        }
+    };
     private View.OnClickListener btnRegisterListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -106,7 +130,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                     editTextEmail.getText().toString(),
                     editTextPassword.getText().toString(),
                     editTextConfirmPassword.getText().toString(),
-                    "0",editTextPhoneNumber.getText().toString());
+                    "0",editTextPhoneNumber.getText().toString(),uType);
         }
     };
 }

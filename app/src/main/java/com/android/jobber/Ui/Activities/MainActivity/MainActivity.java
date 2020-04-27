@@ -101,6 +101,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initializeViews();
         setListeners();
     }
@@ -229,6 +230,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initializeViews() {
+
         FirebaseApp.initializeApp(getApplicationContext());
         startService(new Intent(this, FCMRegisterationService.class));
         helper = new myDbAdapter(this);
@@ -436,8 +438,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)) {
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                        Uri.parse("package:" + MainActivity.this.getPackageName()));
+                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,Uri.parse("package:" + MainActivity.this.getPackageName()));
                 startActivity(intent);
                 MainActivity.this.finish();
             }
