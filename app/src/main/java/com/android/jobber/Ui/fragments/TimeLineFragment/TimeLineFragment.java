@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -299,9 +300,10 @@ public class TimeLineFragment extends BaseFragment implements TimeLineContract.V
     }
 
     public void showDialog(final Flat flat){
+        Resources res = getResources();
         final CharSequence option[]=new CharSequence[]{
-                "View Location",
-                "Call him",
+                res.getString(R.string.View_Location),
+                res.getString(R.string.Call_him),
                 AppPreferences.getBoolean(
                         Constants.AppPreferences.IS_ADMIN,
                         getActivity(),
@@ -309,12 +311,12 @@ public class TimeLineFragment extends BaseFragment implements TimeLineContract.V
                         flat.getUserId().equals(AppPreferences.getString(
                                 Constants.AppPreferences.LOGGED_IN_USER_KEY,
                                 getActivity(),
-                                ""))?"Delete Post":"Report",
-                "Book now"
+                                ""))?res.getString(R.string.Delete_Post):res.getString(R.string.Report),
+                res.getString(R.string.Book_now)
         };
 
         AlertDialog.Builder builder =new AlertDialog.Builder(getActivity());
-        builder.setTitle("Menu");
+        builder.setTitle(res.getString(R.string.Menu));
         builder.setItems(option, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

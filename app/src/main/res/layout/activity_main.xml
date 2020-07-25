@@ -74,7 +74,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         app:menu="@menu/navigation_menu"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:id="@+id/nav"
         android:outlineSpotShadowColor="#000"
         android:outlineAmbientShadowColor="#000"

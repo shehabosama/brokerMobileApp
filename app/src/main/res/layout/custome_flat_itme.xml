@@ -28,41 +28,34 @@
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="shehab osama"
-                android:textColor="@color/whiteTextColor"
-                android:layout_marginHorizontal="5dp"
-                android:layout_gravity="center_vertical"
+                android:textColor="@color/second_main_color"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:id="@+id/username_flat_item"/>
+                android:id="@+id/username_flat_item"
+                />
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="date: 11-10-1997"
                 android:textColor="@color/whiteTextColor"
-                android:layout_marginHorizontal="5dp"
-                android:layout_gravity="center_vertical"
                 android:textSize="12sp"
                 android:id="@+id/date_flat_item"/>
             <TextView
-                android:layout_width="130dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="from :location"
                 android:textColor="@color/whiteTextColor"
-                android:layout_marginHorizontal="5dp"
-                android:layout_gravity="center_vertical"
                 android:textSize="12sp"
                 android:id="@+id/location_flat_item"/>
 
             <TextView
-                android:layout_width="130dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price :10000"
                 android:textColor="@color/whiteTextColor"
-                android:layout_marginHorizontal="5dp"
-                android:layout_gravity="center_vertical"
                 android:textSize="12sp"
                 android:id="@+id/price_flat_item"
                 />

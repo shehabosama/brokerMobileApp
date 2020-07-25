@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Ui.fragments.ProfileFragment.ProfileFragment"
     android:orientation="vertical"
-    android:layout_alignParentRight="true"
     android:background="#292929">
 
 <include layout="@layout/app_bar_layout"/>

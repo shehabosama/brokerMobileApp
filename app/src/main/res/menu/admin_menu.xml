@@ -6,7 +6,7 @@
         android:id="@+id/action_timeline"
         android:enabled="true"
         android:icon="@drawable/ic_view_day_black_24dp"
-        android:title="Timeline"
+        android:title="@string/timeline"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_publishing"
@@ -18,7 +18,7 @@
         android:id="@+id/action_profile"
         android:enabled="true"
         android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="Profile"
+        android:title="@string/profile"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_rate_Reviews"
@@ -30,7 +30,7 @@
         android:id="@+id/action_voice"
         android:enabled="true"
         android:icon="@drawable/ic_mic_black_24dp"
-        android:title="Voice Control"
+        android:title="@string/voice_control"
         app:showAsAction="ifRoom"/>
 
 </menu>

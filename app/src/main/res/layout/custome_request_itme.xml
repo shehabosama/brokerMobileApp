@@ -29,16 +29,17 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical">
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="shehab osama"
-                    android:textColor="@color/whiteTextColor"
-                    android:layout_marginHorizontal="5dp"
 
+                <TextView
+                    android:id="@+id/sender_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:text="shehab osama"
+
+                    android:textColor="@color/whiteTextColor"
                     android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:id="@+id/sender_username"/>
+                    android:textStyle="bold" />
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -49,9 +50,10 @@
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:id="@+id/request_status"
-                    android:gravity="center_horizontal"/>
+                    android:layout_gravity="center_horizontal"
+                   />
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="shehab osama"
                     android:textColor="@color/whiteTextColor"
@@ -60,7 +62,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:id="@+id/request_time_order"
-                    android:gravity="center_horizontal"/>
+                    />
             </LinearLayout>
 
             <View
@@ -80,7 +82,7 @@
                     android:layout_marginVertical="2dp"
                     android:id="@+id/btn_accept"
                     android:layout_gravity="center_vertical"
-                    android:text="Accept"
+                    android:text="@string/accept"
                     android:background="@drawable/login_button_bk"
 
                     />
@@ -92,7 +94,7 @@
                     android:id="@+id/btn_reject"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/login_button_bk"
-                    android:text="Reject"
+                    android:text="@string/reject"
                     />
             </LinearLayout>
 
@@ -125,36 +127,35 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_vertical">
                     <TextView
-                        android:layout_width="100dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="shehab osama"
                         android:textColor="@color/whiteTextColor"
                         android:layout_marginHorizontal="5dp"
-                        android:layout_gravity="center_vertical"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         android:id="@+id/username_flat_item"/>
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="date: 11-10-1997"
-                        android:textColor="@color/whiteTextColor"
-                        android:layout_marginHorizontal="5dp"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="12sp"
-                        android:id="@+id/date_flat_item"/>
-                    <TextView
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:text="from :location"
-                        android:textColor="@color/whiteTextColor"
-                        android:layout_marginHorizontal="5dp"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="12sp"
-                        android:id="@+id/location_flat_item"/>
 
                     <TextView
-                        android:layout_width="130dp"
+                        android:id="@+id/date_flat_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:text="date: 11-10-1997"
+                        android:textColor="@color/whiteTextColor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/location_flat_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:text="from :location"
+                        android:textColor="@color/whiteTextColor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Price :10000"
                         android:textColor="@color/whiteTextColor"

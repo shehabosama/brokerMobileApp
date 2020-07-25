@@ -32,7 +32,7 @@
                 style="@style/modifiedEditText"
                 android:inputType="text"
                 android:maxLines="1"
-                android:hint="Name"
+                android:hint="@string/name"
                 android:textColorHint="#fff"
                 android:textColor="@color/floatColor"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -74,7 +74,7 @@
             <EditText
                 android:id="@+id/editTextConfirmPassword"
                 style="@style/modifiedEditText"
-                android:hint="Confirm Password"
+                android:hint="@string/confirm_password"
                 android:maxLines="1"
                 android:inputType="textPassword"
                 android:textColor="@color/floatColor"/>
@@ -87,7 +87,7 @@
             <EditText
                 android:id="@+id/editTextPhoneNumber"
                 style="@style/modifiedEditText"
-                android:hint="Phone Number"
+                android:hint="@string/phone_number"
                 android:maxLines="1"
                 android:inputType="number"
                 android:textColor="@color/floatColor"/>
@@ -102,13 +102,13 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Broker"
+                android:text="@string/broker"
                 android:textColor="@color/whiteCardColor"
                 android:buttonTint="@color/whiteCardColor"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User    "
+                android:text="@string/user"
                 android:textColor="@color/whiteCardColor"
                 android:backgroundTint="@color/whiteCardColor"
                 android:buttonTint="@color/whiteCardColor"/>
@@ -117,7 +117,7 @@
         <Button
             style="@style/loginButton"
             android:layout_gravity="center"
-            android:text="Register"
+            android:text="@string/register"
             android:textColor="#000"
             android:id="@+id/btn_register"
             />

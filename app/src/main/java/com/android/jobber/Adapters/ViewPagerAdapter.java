@@ -22,7 +22,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     Context context;
     LayoutInflater layoutInflater;
     private boolean swipeLocked;
-    private Integer[] images = {R.drawable.ic_account_circle_black_24dp, R.drawable.logo_chat, R.drawable.ic_airport_shuttle_black_24dp};
+    private Integer[] images = {R.drawable.ic_account_circle_black_24dp, R.mipmap.ic_launcher_round, R.drawable.ic_airport_shuttle_black_24dp};
     private String[] text = {"DM developments is a Tourism Development company targeting to become the leading company in the field, covering the entire property chain.\n" +
             "DM developments , fueled by experience, owned by a board of expertise whom contributed building new cities.\n" +
             "DM developments  aims to change urban culture through providing sustainable, well-designed, luxurious and environmentally-friendly homes to please and ease our clients’ lives through creative community-based societies."

@@ -2,6 +2,7 @@ package com.android.jobber.Ui.fragments.TimeLineFragment;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,7 +79,8 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatsHolder> i
                 .placeholder(R.drawable.backgroundprof)
                 .into(holder.imageView);
         holder.name.setText(flat.getUsername());
-        holder.priceFlatItem.setText("Price :"+flat.getFlatPrice());
+        Resources res = context.getResources();
+        holder.priceFlatItem.setText(res.getString(R.string.price) +":"+flat.getFlatPrice());
         holder.descroption.setText(flat.getFlatDscription());
         holder.expandIcon.setVisibility(flat.getFlatDscription().length()>150?View.VISIBLE:View.INVISIBLE);
         holder.date.setText(flat.getPublishDate());

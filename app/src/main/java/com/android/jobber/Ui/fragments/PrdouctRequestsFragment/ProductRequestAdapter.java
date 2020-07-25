@@ -2,6 +2,7 @@ package com.android.jobber.Ui.fragments.PrdouctRequestsFragment;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +70,8 @@ public class ProductRequestAdapter extends RecyclerView.Adapter<ProductRequestAd
         holder.expandIcon.setVisibility(flat.getFlatDscription().length()>150?View.VISIBLE:View.INVISIBLE);
         holder.date.setText(flat.getPublishDate());
         holder.location.setText(flat.getFlatLocation());
-        holder.priceOrder.setText("Price :"+flat.getFlatPrice());
+        Resources res = context.getResources();
+        holder.priceOrder.setText(res.getString(R.string.price)+": "+flat.getFlatPrice());
         ImageAdapter imageAdapter = new ImageAdapter(flat.getFlatsImage(),context,this);
         holder.recyclerView.setAdapter(imageAdapter);
         final LastseenTime getTime=new LastseenTime();
@@ -81,17 +83,17 @@ public class ProductRequestAdapter extends RecyclerView.Adapter<ProductRequestAd
         if(flat.getConfirmation().equals("0")){
             holder.requestStatus.setTextColor(Color.BLACK);
             holder.requestStatus.setBackgroundResource(R.drawable.button_pending);
-            holder.requestStatus.setText("pending");
+            holder.requestStatus.setText(res.getString(R.string.pinding));
 
         }else if(flat.getConfirmation().equals("1")){
             holder.requestStatus.setTextColor(Color.WHITE);
             holder.requestStatus.setBackgroundResource(R.drawable.button_accept);
-            holder.requestStatus.setText("Accepted");
+            holder.requestStatus.setText(res.getString(R.string.accepted));
 
         }else{
             holder.requestStatus.setTextColor(Color.WHITE);
             holder.requestStatus.setBackgroundResource(R.drawable.button_reject);
-            holder.requestStatus.setText("Rejected");
+            holder.requestStatus.setText(res.getString(R.string.rejected));
         }
         if(AppPreferences.getBoolean(Constants.AppPreferences.IS_ADMIN,context,false)){
 

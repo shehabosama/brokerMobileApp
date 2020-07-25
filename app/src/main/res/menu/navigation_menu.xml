@@ -6,44 +6,44 @@
         android:id="@+id/action_requests_nav"
         android:enabled="true"
         android:icon="@drawable/ic_insert_invitation_black_24dp"
-        android:title="Clients Requests"
+        android:title="@string/clients_requests"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_brokers"
         android:enabled="true"
         android:icon="@drawable/ic_group_black_24dp"
-        android:title="Brokers"
+        android:title="@string/brokers"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_chat_nav"
         android:enabled="true"
         android:icon="@drawable/ic_chat_black_24dp"
-        android:title="Chat"
+        android:title="@string/chat"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/Invitation_nav"
         android:enabled="true"
         android:icon="@drawable/ic_insert_invitation_black_24dp"
-        android:title="Invitation"
+        android:title="@string/invitation"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/favorite_nav"
         android:enabled="true"
         android:icon="@drawable/ic_star_gold"
-        android:title="Favorites"
+        android:title="@string/favorites"
         app:showAsAction="ifRoom"/>
-    -<item android:title="Other" >
+    -<item android:title="@string/other" >
 
 
     -<menu>
     <item
-        android:title="Settings"
+        android:title="@string/settings"
         android:icon="@drawable/ic_settings_black_24dp"
         android:id="@+id/setting"
         />
 
-    <item android:title="Logout"
+    <item android:title="@string/logout"
         android:icon="@drawable/logout"
         android:id="@+id/logout_nav"
         />

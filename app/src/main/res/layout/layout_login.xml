@@ -21,7 +21,7 @@
 
         <TextView
             style="@style/headerTextPrimary"
-            android:text="Login"
+            android:text="@string/login"
             android:layout_marginTop="@dimen/loginViewsMargin"/>
 
 
@@ -63,7 +63,7 @@
         <TextView
 
             style="@style/viewParent"
-            android:text="Forgot Password?"
+            android:text="@string/forgot_password"
             android:textColor="@color/whiteTextColor"
             android:textSize="@dimen/newsMoreTextSize"
             android:layout_gravity="end"
@@ -73,7 +73,7 @@
         <Button
             android:id="@+id/btn_login"
             style="@style/loginButton"
-            android:text="Login"
+            android:text="@string/login"
             android:textColor="#000"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/loginViewsMargin"

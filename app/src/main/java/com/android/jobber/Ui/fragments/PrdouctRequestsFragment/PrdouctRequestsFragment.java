@@ -3,6 +3,7 @@ package com.android.jobber.Ui.fragments.PrdouctRequestsFragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -127,22 +128,23 @@ public class PrdouctRequestsFragment extends BaseFragment implements ProductRequ
     @Override
     public void onClickMenu(final ProductRequest product) {
         final LastseenTime getTime=new LastseenTime();
+        Resources res = getResources();
         long lastseen=Long.parseLong(product.getTimestamp());
         String lastseenDisplayTime=getTime.getTimeAgo(lastseen,getActivity()).toString();
         Log.e(TAG, "onClick: "+lastseenDisplayTime );
         final CharSequence option[]=new CharSequence[]{
-                "View Location",
-                "Call him",
+                res.getString(R.string.View_Location),
+                res.getString(R.string.Call_him),
               AppPreferences.getBoolean(Constants.AppPreferences.IS_ADMIN,getActivity(),false)
-                      ? "Delete Request"
+                      ? res.getString(R.string.Delete_Request)
                       :lastseenDisplayTime.equals("an hour ago")
                       ?""
-                      :"Delete Request"
+                      :res.getString(R.string.Delete_Request)
 
         };
 
         AlertDialog.Builder builder =new AlertDialog.Builder(getActivity());
-        builder.setTitle("Menu");
+        builder.setTitle(res.getString(R.string.Menu));
         builder.setItems(option, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

@@ -31,6 +31,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
@@ -73,6 +74,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, TextToSpeech.OnInitListener, PatternsContract.View {
 
+    private static final int REQUEST_MICROPHONE = 101;
     private NavigationView navigationView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -170,6 +172,27 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         return super.onOptionsItemSelected(item);
     }
 
+    private void checkPermissionAudio() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.RECORD_AUDIO},
+                        REQUEST_MICROPHONE);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == REQUEST_MICROPHONE){
+
+        }
+    }
+
     private void UserMenuSelector(MenuItem item) {
         switch(item.getItemId()){
             case R.id.action_search:
@@ -230,7 +253,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initializeViews() {
-
+        checkPermissionAudio();
         FirebaseApp.initializeApp(getApplicationContext());
         startService(new Intent(this, FCMRegisterationService.class));
         helper = new myDbAdapter(this);
@@ -257,11 +280,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 //        installIntent.setAction(
 //                TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
 //        startActivity(installIntent);
-        Intent intent = new Intent();
-        intent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
-        startActivityForResult(intent, 0);
+//        Intent intent = new Intent();
+//        intent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+//        startActivityForResult(intent, 0);
 
-        checkPermission();
+        //checkPermission();
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(MainActivity.this);
         mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getClass().getPackage().getName());
@@ -325,12 +348,12 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 0){
             if(resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS){
-                Toast.makeText(getApplicationContext(),"Already Installed", Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(),"Already Installed", Toast.LENGTH_LONG).show();
             } else {
-                Intent installIntent = new Intent();
-                installIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-                startActivity(installIntent);
-                Toast.makeText(getApplicationContext(),"Installed Now", Toast.LENGTH_LONG).show();
+//                Intent installIntent = new Intent();
+//                installIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+//                startActivity(installIntent);
+//                Toast.makeText(getApplicationContext(),"Installed Now", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -339,7 +362,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     protected void setListeners() {
         bottomNavigationViewEx.setOnNavigationItemSelectedListener(MainActivity.this);
         floatingActionButton.setOnTouchListener(floatingActionButtonListener);
-        mtoolbar.setNavigationOnClickListener(mtoolbarListener);
+      //  mtoolbar.setNavigationOnClickListener(mtoolbarListener);
     }
 
 
@@ -402,18 +425,18 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
         }
     };
-    private View.OnClickListener mtoolbarListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            if (mDrawerLayout.isDrawerOpen(Gravity.LEFT))
-            {
-                mDrawerLayout.closeDrawer(Gravity.LEFT);
-            }else
-            {
-                mDrawerLayout.openDrawer(Gravity.LEFT);
-            }
-        }
-    };
+//    private View.OnClickListener mtoolbarListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            if (mDrawerLayout.isDrawerOpen(Gravity.LEFT))
+//            {
+//                mDrawerLayout.closeDrawer(Gravity.LEFT);
+//            }else
+//            {
+//                mDrawerLayout.openDrawer(Gravity.LEFT);
+//            }
+//        }
+//    };
     private View.OnTouchListener floatingActionButtonListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {

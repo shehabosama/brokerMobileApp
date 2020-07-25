@@ -12,12 +12,12 @@
         <menu>
            <item android:id="@+id/action_multi_option"
             android:enabled="true"
-            android:title="Multi Option Filter"
+            android:title="@string/multi_option_filter"
             app:showAsAction="ifRoom"/>
 
             <item android:id="@+id/action_by_name"
                 android:enabled="true"
-                android:title="Filter by Name"
+                android:title="@string/filter_by_name"
                 app:showAsAction="ifRoom"/>
         </menu>
     </item>
