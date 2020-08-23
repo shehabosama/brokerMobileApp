@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -49,6 +50,12 @@ public class JobberUserAdapter extends RecyclerView.Adapter<JobberUserAdapter.Jo
                 .load(Urls.IMAGE_URL+jobberUsers.getUser_image())
                 .placeholder(R.drawable.backgroundprof)
                 .into(holder.profileImage);
+        holder.verification_mark.setVisibility(View.GONE);
+        if(jobberUsers.getVerifying_mark().equals("1")){
+            holder.verification_mark.setVisibility(View.VISIBLE);
+        }else{
+            holder.verification_mark.setVisibility(View.GONE);
+        }
 
         holder.setListener(jobberUsers);
         holder.rateBar.setRating(0.0f);
@@ -82,6 +89,7 @@ public class JobberUserAdapter extends RecyclerView.Adapter<JobberUserAdapter.Jo
         private CircleImageView profileImage;
         private TextView userName,email,phone,address;
         private RatingBar rateBar;
+        private ImageView verification_mark;
 
         public JobberUserViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,6 +99,7 @@ public class JobberUserAdapter extends RecyclerView.Adapter<JobberUserAdapter.Jo
             phone = itemView.findViewById(R.id.user_phone);
             address = itemView.findViewById(R.id.user_address);
             rateBar = itemView.findViewById(R.id.rate_bar);
+            verification_mark = itemView.findViewById(R.id.verify);
         }
 
         public void setListener(final JobberUsers jobberUsers) {

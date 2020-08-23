@@ -40,6 +40,8 @@ import com.android.jobber.common.HelperStuffs.AppPreferences;
 import com.android.jobber.common.HelperStuffs.CompressPhotos;
 import com.android.jobber.common.HelperStuffs.Constants;
 import com.android.jobber.common.HelperStuffs.Message;
+import com.android.jobber.common.HelperStuffs.PermissionHandlerFragment;
+import com.android.jobber.common.HelperStuffs.PermissionsListener;
 import com.android.jobber.common.base.BaseFragment;
 import com.android.jobber.common.model.Listitem;
 import com.jaiselrahman.filepicker.activity.FilePickerActivity;
@@ -61,7 +63,11 @@ import static com.jaiselrahman.filepicker.activity.FilePickerActivity.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PublishingFragment extends BaseFragment implements PublishingContract.View,PublishingContract.Model.onFinishedListener{
+public class PublishingFragment extends PermissionHandlerFragment implements
+        PublishingContract.View,
+        PublishingContract.Model.onFinishedListener ,
+        PermissionsListener {
+
     private static final String PERSISTENT_VARIABLE_BUNDLE_KEY = "persistentVariable";
     private static final int FILE_REQUEST_CODE = 100;
     private static final int PICK_FROM_GALLERY = 101;
@@ -84,7 +90,6 @@ public class PublishingFragment extends BaseFragment implements PublishingContra
     private Uri lastCapturedUri;
     private double lat,lang;
 
-
     public static PublishingFragment newInstance(){
         return new PublishingFragment();
     }
@@ -92,10 +97,7 @@ public class PublishingFragment extends BaseFragment implements PublishingContra
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -106,46 +108,17 @@ public class PublishingFragment extends BaseFragment implements PublishingContra
         return view;
     }
 
-
-
-
-
-
-    private boolean checkPermissions() {
-        int permissionState = ActivityCompat.checkSelfPermission(getActivity(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION);
-        return permissionState == PackageManager.PERMISSION_GRANTED;
-    }
+//    private boolean checkPermissions() {
+//        int permissionState = ActivityCompat.checkSelfPermission(getActivity(),
+//                android.Manifest.permission.ACCESS_FINE_LOCATION);
+//        return permissionState == PackageManager.PERMISSION_GRANTED;
+//    }
 
     private void startLocationPermissionRequest() {
         ActivityCompat.requestPermissions(getActivity(),
                 new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                 REQUEST_PERMISSIONS_REQUEST_CODE);
     }
-
-    private void requestPermissions() {
-        boolean shouldProvideRationale =
-                ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                        Manifest.permission.ACCESS_FINE_LOCATION);
-
-        // Provide an additional rationale to the user. This would happen if the user denied the
-        // request previously, but didn't check the "Don't ask again" checkbox.
-        if (shouldProvideRationale) {
-            Log.i(ContentValues.TAG, "Displaying permission rationale to provide additional context.");
-
-
-        } else {
-            Log.i(ContentValues.TAG, "Requesting permission");
-            // Request permission. It's possible this can be auto answered if device policy
-            // sets the permission in a given state or the user denied the permission
-            // previously and checked "Never ask again".
-            startLocationPermissionRequest();
-        }
-    }
-
-
-
-
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -209,10 +182,10 @@ public class PublishingFragment extends BaseFragment implements PublishingContra
     @Override
     protected void initializeViews(View v) {
         setHasOptionsMenu(true);
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED||
-                ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA}, PICK_FROM_GALLERY);
-        }
+        checkPermissions(getActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA);
         selectFromGallery = v.findViewById(R.id.select_from_gallery);
         captureCamera = v.findViewById(R.id.capture);
         btnLocation = v.findViewById(R.id.btn_add_location);
@@ -224,7 +197,7 @@ public class PublishingFragment extends BaseFragment implements PublishingContra
         radioGroup = v.findViewById(R.id.radio);
         radioGroupType = v.findViewById(R.id.radio_type_product);
         imageSpinIcon = v.findViewById(R.id.image_icon);
-        MyCustomeAdapter myCustomeAdapter3= new MyCustomeAdapter(getActivity(),getAllCoutry());
+        MyCustomeAdapter myCustomeAdapter3= new MyCustomeAdapter(getActivity(), getAllCountry());
         spin_search =v.findViewById(R.id.spin_search);
         spin_search.setAdapter(myCustomeAdapter3);
         editText = v.findViewById(R.id.editTextDescription);
@@ -232,9 +205,7 @@ public class PublishingFragment extends BaseFragment implements PublishingContra
         progressDialog = new ProgressDialog(getActivity());
         editTextPrice = v.findViewById(R.id.editTextPrice);
 
-
     }
-
 
     @Override
     protected void setListeners() {
@@ -248,7 +219,7 @@ public class PublishingFragment extends BaseFragment implements PublishingContra
 
     }
 
-    public ArrayList<Listitem> getAllCoutry(){
+    public ArrayList<Listitem> getAllCountry(){
         final ArrayList<Listitem> listitems=new ArrayList<Listitem>();
         listitems.add(new Listitem("Select Governorate"));
         listitems.add(new Listitem("Cairo"));
@@ -299,6 +270,7 @@ public class PublishingFragment extends BaseFragment implements PublishingContra
                     (forVideo ? "MOVIES" : "PICTURES") + " Directory not exists");
             return;
         }
+
         lastCapturedFile = new File(dir.getAbsolutePath() + fileName);
         Uri fileUri = FilePickerProvider.getUriForFile(getActivity(), lastCapturedFile);
         ContentValues values = new ContentValues();
@@ -331,7 +303,7 @@ public class PublishingFragment extends BaseFragment implements PublishingContra
                 .setCheckPermission(true)
                 .setShowImages(true)
                 .enableImageCapture(true)
-                .setMaxSelection(6)
+                .setMaxSelection(10)
                 .setSkipZeroSizeFiles(true)
                 .build());
         startActivityForResult(intent, FILE_REQUEST_CODE);
@@ -434,4 +406,13 @@ public class PublishingFragment extends BaseFragment implements PublishingContra
     }
 
 
+    @Override
+    public void onPermissionGranted(String[] permissions) {
+    }
+
+    @Override
+    public void onPermissionDenied(String[] permissions) {
+
+
+    }
 }

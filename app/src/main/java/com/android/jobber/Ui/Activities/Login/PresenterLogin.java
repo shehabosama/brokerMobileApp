@@ -69,6 +69,7 @@ public class PresenterLogin implements LoginContract.Presenter {
                         user.address = response.body().user.address;
                         user.gender   = response.body().user.gender;
                         user.userImage  = response.body().user.userImage;
+                        user.verification_code = response.body().user.verification_code;
 
                         mModel.onFinished(user);
 

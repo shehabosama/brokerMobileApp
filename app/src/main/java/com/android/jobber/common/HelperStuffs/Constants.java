@@ -1,6 +1,8 @@
 package com.android.jobber.common.HelperStuffs;
 
 
+import android.net.Uri;
+
 import com.android.jobber.R;
 
 /**
@@ -63,6 +65,7 @@ public class Constants {
         public static final int RECEIVED_IMAGE=4;
     }
 
+
     public static class ActivityRequestCodes {
         public static final int PICKUP_DELIVER_ACTIVITY_REQUEST_CODE = 1000;
         public static final int ORDER_DETAILS_ACTIVITY_REQUEST_CODE = 1001;
@@ -89,5 +92,6 @@ public class Constants {
     public static class BundleKeys {
         public static final String USER_ID ="user_id" ;
         public static final String USER_ID_FROM_JOBBER = "user_id_from_jobber";
+        public static Uri M_URI;
     }
 }

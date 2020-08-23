@@ -202,4 +202,10 @@ public interface API {
                                           @Part("isAny") RequestBody isAny, @Part("user_id") String user);
     @POST("get-all-users.php")
     Call<JobberUsersResponse> getAllJobberUsers();
+    @Multipart
+    @POST("add_request_verification.php")
+    Call<MainResponse> sendRequestVerification(@Header("Cookie") String sessionIdAndRz,
+                                               @Part MultipartBody.Part file,
+                                               @Part("items") RequestBody items,
+                                               @Part("isAny") RequestBody isAny, @Part("user_id") String user,@Part("verification_reson") String verification_reson);
 }

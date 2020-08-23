@@ -17,7 +17,7 @@ public class PresenterPatterns implements PatternsContract.Presenter{
     private PatternsContract.View mView;
     private myDbAdapter myDbAdapter;
     public String[] pat_en ={
-            /*open favorites fragment*/"favorites","favorite","go to favorite","go to favorites","move to favorite","move to favorites","favourites","go to favourites",
+            /*open favorites fragment*/"your name" ,"favorites","favorite","go to favorite","go to favorites","move to favorite","move to favorites","favourites","go to favourites",
             /*open timeline fragment*/"timeline","go to th timeline","view products","go to the posts","posts","go to timeline",
             /*open publish fragment*/"publish posts","add posts","add product","add land","add flats","publish something","add post","publish",
             /*open review fragment*/"reviews","go to reviews","get my rates","am i a bad gay","my rates","rates",
@@ -35,7 +35,7 @@ public class PresenterPatterns implements PatternsContract.Presenter{
             /*funny words*/"i love you","love you","do you love me","love me","do you love me","you love me","love me","song for me","song","fuck you",
             "mother fucker","i am hungry","i hungry","do you know siri","google assistant","google assistance","google","do you know cortana","Cortana",
             "you know siri","siri","you know cortana","do you sleep","so happy for talk to you","tell me a joke",
-            "tell me joke","joke"
+            "tell me joke","joke",
     };
 
 
@@ -123,6 +123,20 @@ public class PresenterPatterns implements PatternsContract.Presenter{
 
             patterns.clear();
             return "opening chat rooms";
+        }else if(patterns.get(i).contains("what's your name")||
+                patterns.get(i).contains("what is your name")||
+                patterns.get(i).contains("your name")){
+
+
+            patterns.clear();
+            return "My name is shehab assistant how can i help you";
+        }else if(patterns.get(i).contains("who made you")||
+                patterns.get(i).contains("made you")
+                ){
+
+
+            patterns.clear();
+            return "shehab osama, he is a java programmer and he created me to help you";
         }else if(patterns.get(i).contains("hello")||
                 patterns.get(i).contains("hay")||
                 patterns.get(i).contains("hay you")){

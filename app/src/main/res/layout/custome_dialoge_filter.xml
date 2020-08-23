@@ -58,7 +58,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_horizontal"
-                android:text="Price"
+                android:text="@string/price"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -71,7 +71,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:hint="From"
+                    android:hint="@string/from"
                     android:textSize="15dp"
                     android:textColor="#000"
                     android:id="@+id/txt_price_from"
@@ -83,7 +83,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:hint="To"
+                    android:hint="@string/to"
                     android:textSize="15dp"
                     android:textColor="#000"
                     android:layout_marginBottom="10dp"
@@ -98,7 +98,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_horizontal"
-                android:text="Type of Product"
+                android:text="@string/type_of_product"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -113,19 +113,19 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="flats"
+                    android:text="@string/flats"
                     android:textStyle="bold"
                     android:id="@+id/radio_flats"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lands"
+                    android:text="@string/lands"
                     android:textStyle="bold"
                     android:id="@+id/radio_land"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="All"
+                    android:text="@string/all"
                     android:textStyle="bold"
                     android:id="@+id/radio_All_type"/>
             </RadioGroup>
@@ -147,7 +147,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginLeft="20dp"
                     android:gravity="center_horizontal"
-                    android:text="Ownership type"
+                    android:text="@string/ownership_type"
                     android:textColor="#000"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -162,19 +162,19 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rent"
+                        android:text="@string/rent"
                         android:textStyle="bold"
                         android:id="@+id/radio_rent_type"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Conveyance"
+                        android:text="@string/conveyance"
                         android:textStyle="bold"
                         android:id="@+id/radio_conveyance"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="All"
+                        android:text="@string/all"
                         android:textStyle="bold"
                         android:id="@+id/radio_All"/>
                 </RadioGroup>
@@ -185,7 +185,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center_horizontal"
-                    android:text="Country"
+                    android:text="@string/country"
                     android:textColor="#000"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -232,7 +232,7 @@
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:layout_height="40dp"
-                    android:text="Filter Now"
+                    android:text="@string/filter_now"
                     android:background="@drawable/login_button_bk"
                     android:textSize="15dp"
                     android:textColor="@color/black"
@@ -246,7 +246,7 @@
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:layout_height="40dp"
-                    android:text="Close"
+                    android:text="@string/close"
                     android:textSize="15dp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="10dp"

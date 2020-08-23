@@ -34,6 +34,17 @@ public class JobberUsers implements Parcelable {
     @SerializedName("rate")
     @Expose
     private int rate;
+    @SerializedName("verifying_mark")
+    @Expose
+    private String verifying_mark;
+
+    public String getVerifying_mark() {
+        return verifying_mark;
+    }
+
+    public void setVerifying_mark(String verifying_mark) {
+        this.verifying_mark = verifying_mark;
+    }
 
     protected JobberUsers(Parcel in) {
         id = in.readInt();
@@ -45,6 +56,7 @@ public class JobberUsers implements Parcelable {
         address = in.readString();
         gender = in.readString();
         rate = in.readInt();
+        verifying_mark = in.readString();
     }
 
     public static final Creator<JobberUsers> CREATOR = new Creator<JobberUsers>() {
@@ -147,5 +159,6 @@ public class JobberUsers implements Parcelable {
         parcel.writeString(address);
         parcel.writeString(gender);
         parcel.writeInt(rate);
+        parcel.writeString(verifying_mark);
     }
 }

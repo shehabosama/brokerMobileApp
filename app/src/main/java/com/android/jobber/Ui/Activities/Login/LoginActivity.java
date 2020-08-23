@@ -123,7 +123,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void onFinished(User user) {
-        helper.insertData(user.username,editTextPassword.getText().toString(),editTextEmail.getText().toString(),String.valueOf(user.phoneNo),String.valueOf(user.gender),user.address,user.userImage,String.valueOf(user.id));
+        helper.insertData(user.username,
+                editTextPassword.getText().toString(),
+                editTextEmail.getText().toString(),
+                String.valueOf(user.phoneNo),
+                String.valueOf(user.gender),
+                user.address,user.userImage,
+                String.valueOf(user.id),
+                String.valueOf(user.verification_code));
     }
 
     @Override

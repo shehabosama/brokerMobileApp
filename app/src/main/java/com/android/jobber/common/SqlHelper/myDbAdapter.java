@@ -14,7 +14,7 @@ public class myDbAdapter {
         myhelper = new myDbHelper(context);
     }
 
-    public long insertData(String name, String pass,String email,String phone,String gender,String address,String image,String userId)
+    public long insertData(String name, String pass,String email,String phone,String gender,String address,String image,String userId , String verification_code)
     {
         SQLiteDatabase dbb = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -26,6 +26,7 @@ public class myDbAdapter {
         contentValues.put(myDbHelper.ADDRESS,address);
         contentValues.put(myDbHelper.IMAGE,image);
         contentValues.put(myDbHelper.USER_ID,userId);
+        contentValues.put(myDbHelper.VERIFICATION_CODE , verification_code);
         long id = dbb.insert(myDbHelper.TABLE_NAME, null , contentValues);
         return id;
     }
@@ -50,6 +51,8 @@ public class myDbAdapter {
                 cursor = db.rawQuery("SELECT "+myDbHelper.USER_ID+" FROM "+myDbHelper.TABLE_NAME, null);
             }else if (typeData.equals("password")){
                 cursor = db.rawQuery("SELECT "+myDbHelper.MyPASSWORD+" FROM "+myDbHelper.TABLE_NAME, null);
+            }else if (typeData.equals("verification_code")){
+                cursor = db.rawQuery("SELECT "+myDbHelper.VERIFICATION_CODE+" FROM "+myDbHelper.TABLE_NAME, null);
             }
           //  cursor = db.rawQuery("SELECT "+myDbHelper.NAME+" FROM "+myDbHelper.TABLE_NAME, null);
             if(cursor.getCount() > 0) {
@@ -70,6 +73,8 @@ public class myDbAdapter {
                     empName = cursor.getString(cursor.getColumnIndex(myDbHelper.USER_ID));
                 }else if (typeData.equals("password")){
                     empName = cursor.getString(cursor.getColumnIndex(myDbHelper.MyPASSWORD));
+                }else if (typeData.equals("verification_code")){
+                    empName = cursor.getString(cursor.getColumnIndex(myDbHelper.VERIFICATION_CODE));
                 }
 
             }
@@ -81,7 +86,7 @@ public class myDbAdapter {
     public String getData()
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
-        String[] columns = {myDbHelper.UID, myDbHelper.NAME, myDbHelper.MyPASSWORD,myDbHelper.MyEmail};
+        String[] columns = {myDbHelper.UID, myDbHelper.NAME, myDbHelper.MyPASSWORD,myDbHelper.MyEmail , myDbHelper.VERIFICATION_CODE};
         Cursor cursor =db.query(myDbHelper.TABLE_NAME,columns,null,null,null,null,null);
         StringBuffer buffer= new StringBuffer();
         while (cursor.moveToNext())
@@ -121,6 +126,7 @@ public class myDbAdapter {
 
     public static class myDbHelper extends SQLiteOpenHelper
     {
+        public static final String VERIFICATION_CODE = "verification_code";
         private static final String IMAGE ="Image" ;
         private static final String PHONE ="Phone" ;
         private static final String GENDER = "Gender";
@@ -134,7 +140,7 @@ public class myDbAdapter {
         private static final String MyPASSWORD= "Password";    // Column III
         private static final String MyEmail= "email";
         private static final String CREATE_TABLE = "CREATE TABLE "+TABLE_NAME+
-                " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+NAME+" VARCHAR(255) ,"+ MyPASSWORD+" VARCHAR(225),"+MyEmail+" VARCHAR(255),"+IMAGE+" VARCHAR(255),"+PHONE+" VARCHAR(255),"+GENDER+" VARCHAR(255),"+ADDRESS+" VARCHAR(255),"+USER_ID+" VARCHAR(255));";
+                " ("+UID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+NAME+" VARCHAR(255) ,"+ MyPASSWORD+" VARCHAR(225),"+MyEmail+" VARCHAR(255),"+IMAGE+" VARCHAR(255),"+PHONE+" VARCHAR(255),"+GENDER+" VARCHAR(255),"+ADDRESS+" VARCHAR(255),"+USER_ID+" VARCHAR(255),"+VERIFICATION_CODE+" VARCHAR(255));";
         private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_NAME;
         private Context context;
 

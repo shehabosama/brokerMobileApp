@@ -110,4 +110,64 @@ public class PresenterProfile implements ProfileContract.Presenter{
         }
 
     }
+
+    @Override
+    public void performSendRequestVerificationMark(Uri uri,Context context, String reason) {
+        mView.showProgress();
+        if(uri == null){
+//            try {
+//                mModel.onFinished(uri.toString());
+//            }catch (NullPointerException ex){
+//                System.err.println(ex.getLocalizedMessage());
+//            }
+            mModel.onFinished("Pleas Select the photo");
+            mView.hideProgress();
+
+        }else if(TextUtils.isEmpty(reason)){
+            mModel.onFinished("Something Went Wrong..");
+            mView.hideProgress();
+
+        }else{
+            String cookie = "cookiehere";
+            String stringValue = "stringValue";
+            File file = new File( FileUtil.getPath(uri,context));
+            final RequestBody requestFile =
+                    RequestBody.create(
+                            MediaType.parse("image/jpg"),
+                            file
+                    );
+            String items = "[1,2,4]";
+            Random rand = new Random();
+            int value = rand.nextInt(50);
+            final String filename =String.valueOf(value)+file.getName();
+            MultipartBody.Part body = MultipartBody.Part.createFormData("uploaded_file", filename, requestFile);
+
+
+            RequestBody items1 = RequestBody.create(MediaType.parse("application/json"), items);
+            RequestBody stringValue1 = RequestBody.create(MediaType.parse("text/plain"), stringValue);
+            WebService.getInstance(true).getApi().sendRequestVerification(cookie, body, items1, stringValue1, AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,context,"0"),reason).enqueue(new Callback<MainResponse>() {
+                @Override
+                public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
+                    if (response.body().status == 2){
+                        mModel.onFinished(response.body().message);
+                        mView.hideProgress();
+                        //   Log.e(TAG, "onResponse: "+filename );
+                        // myDbAdapter.updateName(email,name,address,gender,filename,phone);
+                    } else {
+
+                        mModel.onFinished(response.body().message);
+                        mView.hideProgress();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MainResponse> call, Throwable t) {
+                    mModel.onFailuer(t);
+                    mView.hideProgress();
+                    Log.e(TAG, "onResponse: "+t.getLocalizedMessage());
+                }
+            });
+        }
+    }
 }

@@ -70,6 +70,17 @@ public class MyFavorite implements Parcelable {
     @SerializedName("rate")
     @Expose
     private int rate;
+    @SerializedName("verifying_mark")
+    @Expose
+    private String verifying_mark;
+
+    public String getVerifying_mark() {
+        return verifying_mark;
+    }
+
+    public void setVerifying_mark(String verifying_mark) {
+        this.verifying_mark = verifying_mark;
+    }
 
     public int getRate() {
         return rate;
@@ -99,6 +110,7 @@ public class MyFavorite implements Parcelable {
         lat = in.readString();
         lang = in.readString();
         productType = in.readString();
+        verifying_mark = in.readString();
     }
 
     public String getUser_id() {
@@ -289,5 +301,6 @@ public class MyFavorite implements Parcelable {
         parcel.writeString(lat);
         parcel.writeString(lang);
         parcel.writeString(productType);
+        parcel.writeString(verifying_mark);
     }
 }

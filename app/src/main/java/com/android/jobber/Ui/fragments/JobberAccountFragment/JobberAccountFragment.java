@@ -41,6 +41,8 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+
 public class JobberAccountFragment extends BaseFragment implements JobberAccountContract.Model.onFinishedListener,JobberAccountContract.View, FlatAdapter.FlatAdapterInterAction {
     private SwipeRefreshLayout srlList;
     private PresenterJobberAccount presenter;
@@ -49,7 +51,7 @@ public class JobberAccountFragment extends BaseFragment implements JobberAccount
     private Flat flat;
     private MyFavorite myFavorite;
     private JobberUsers jobberUsers;
-    private ImageView imageCall;
+    private ImageView imageCall,verifyImage;
     private List<MyFavorite>favoriteList;
     private String rate;
     private RatingBar ratingBar,smallRateBar;
@@ -90,6 +92,7 @@ public class JobberAccountFragment extends BaseFragment implements JobberAccount
         textViewName = v.findViewById(R.id.username);
         textViewAddress = v.findViewById(R.id.address);
         imageCall = v.findViewById(R.id.phone_call);
+        verifyImage = v.findViewById(R.id.verify);
         recyclerView = v.findViewById(R.id.recycler_view);
         srlList = v.findViewById(R.id.srlList);
         ratingBar = v.findViewById(R.id.rating);
@@ -100,195 +103,17 @@ public class JobberAccountFragment extends BaseFragment implements JobberAccount
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         presenter = new PresenterJobberAccount(this,this);
         flatList = new ArrayList<>();
+
         if(getArguments().getParcelable(Constants.BundleKeys.USER_ID).getClass().toString().equals("class com.android.jobber.common.model.MyFavorite")){
-            myFavorite= getArguments().getParcelable(Constants.BundleKeys.USER_ID);
-            textViewEmail.setText(myFavorite.getEmail());
-            textViewAddress.setText(myFavorite.getAddress());
-            textViewPhone.setText(myFavorite.getPhoneNo());
-            textViewName.setText(myFavorite.getUsername());
-            Picasso.with(getActivity())
-                    .load(Urls.IMAGE_URL +myFavorite.getUserImage())
-                    .placeholder(R.drawable.backgroundprof)
-                    .into(profileImage);
-            if(myFavorite.getGender().equals("1")){
-                textViewGender.setText("male");
-            }else if(myFavorite.getGender().equals("2")){
-                textViewGender.setText("female");
-            }else{
-                textViewGender.setText("None");
-            }
-            presenter.performGetUserFlats(myFavorite.getUser_id());
-            userAccountId = myFavorite.getUser_id();
-            if (TextUtils.isEmpty(AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),""))){
-                ratingBar.setRating(0.0f);
-            }else{
-                String rating = AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),"");
 
-                if(rating.equals("-20")){
-                    ratingBar.setRating(0.5f);
-                }else if(rating.equals("-10")){
-                    ratingBar.setRating(1.0f);
-                }else if(rating.equals("-5")){
-                    ratingBar.setRating(1.5f);
-                }else if(rating.equals("0")){
-                    ratingBar.setRating(2.0f);
-                }else if(rating.equals("10")){
-                    ratingBar.setRating(2.5f);
-                }else if(rating.equals("20")){
-                    ratingBar.setRating(3.0f);
-                }else if(rating.equals("30")){
-                    ratingBar.setRating(3.5f);
-                }else if(rating.equals("40")){
-                    ratingBar.setRating(4.0f);
-                }else if(rating.equals("50")){
-                    ratingBar.setRating(4.5f);
-                }else if(rating.equals("60")){
-                    ratingBar.setRating(5.0f);
-                }
-            }
+           setupUserDataComeFromMyFavoriteClass();
 
-            if (myFavorite.getRate()>60){
-                smallRateBar.setRating(1.0f);
-            }if (myFavorite.getRate()>120){
-                smallRateBar.setRating(2.0f);
-            } if (myFavorite.getRate()>180){
-                smallRateBar.setRating(3.0f);
-            } if (myFavorite.getRate()>240){
-                smallRateBar.setRating(3.0f);
-            } if (myFavorite.getRate()>320){
-                smallRateBar.setRating(4.0f);
-            } if (myFavorite.getRate()>380){
-                smallRateBar.setRating(5.0f);
-            }
         }else if (getArguments().getParcelable(Constants.BundleKeys.USER_ID).getClass().toString().equals("class com.android.jobber.common.model.JobberUsers")){
 
-
-
-            jobberUsers= getArguments().getParcelable(Constants.BundleKeys.USER_ID);
-            textViewEmail.setText(jobberUsers.getEmail());
-            textViewAddress.setText(jobberUsers.getAddress());
-            textViewPhone.setText(jobberUsers.getPhone_no());
-            textViewName.setText(jobberUsers.getUser_name());
-            Picasso.with(getActivity())
-                    .load(Urls.IMAGE_URL +jobberUsers.getUser_image())
-                    .placeholder(R.drawable.backgroundprof)
-                    .into(profileImage);
-            if(jobberUsers.getGender().equals("1")){
-                textViewGender.setText("male");
-            }else if(jobberUsers.getGender().equals("2")){
-                textViewGender.setText("female");
-            }else{
-                textViewGender.setText("None");
-            }
-            presenter.performGetUserFlats(String.valueOf(jobberUsers.getId()));
-            userAccountId =String.valueOf(jobberUsers.getId());
-            if (TextUtils.isEmpty(AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),""))){
-                ratingBar.setRating(0.0f);
-            }else{
-                String rating = AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),"");
-
-                if(rating.equals("-20")){
-                    ratingBar.setRating(0.5f);
-                }else if(rating.equals("-10")){
-                    ratingBar.setRating(1.0f);
-                }else if(rating.equals("-5")){
-                    ratingBar.setRating(1.5f);
-                }else if(rating.equals("0")){
-                    ratingBar.setRating(2.0f);
-                }else if(rating.equals("10")){
-                    ratingBar.setRating(2.5f);
-                }else if(rating.equals("20")){
-                    ratingBar.setRating(3.0f);
-                }else if(rating.equals("30")){
-                    ratingBar.setRating(3.5f);
-                }else if(rating.equals("40")){
-                    ratingBar.setRating(4.0f);
-                }else if(rating.equals("50")){
-                    ratingBar.setRating(4.5f);
-                }else if(rating.equals("60")){
-                    ratingBar.setRating(5.0f);
-                }
-            }
-
-            if (jobberUsers.getRate()>60){
-                smallRateBar.setRating(1.0f);
-            }if (jobberUsers.getRate()>120){
-                smallRateBar.setRating(2.0f);
-            } if (jobberUsers.getRate()>180){
-                smallRateBar.setRating(3.0f);
-            } if (jobberUsers.getRate()>240){
-                smallRateBar.setRating(3.0f);
-            } if (jobberUsers.getRate()>320){
-                smallRateBar.setRating(4.0f);
-            } if (jobberUsers.getRate()>380){
-                smallRateBar.setRating(5.0f);
-            }
-
-
+            setupUserDataComeFromJobberUser();
         }else{
-            flat = getArguments().getParcelable(Constants.BundleKeys.USER_ID);
-            textViewEmail.setText(flat.getEmail());
-            textViewAddress.setText(flat.getAddress());
-            textViewPhone.setText(flat.getPhone_no());
-            textViewName.setText(flat.getUsername());
-            Picasso.with(getActivity())
-                    .load(Urls.IMAGE_URL +flat.getUserImage())
-                    .placeholder(R.drawable.backgroundprof)
-                    .into(profileImage);
-            if(flat.getGender().equals("1")){
-                textViewGender.setText("male");
-            }else if(flat.getGender().equals("2")){
-                textViewGender.setText("female");
-            }else{
-                textViewGender.setText("None");
-            }
-            presenter.performGetUserFlats(flat.getUserId());
-            userAccountId = flat.getUserId();
-            if (TextUtils.isEmpty(AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),""))){
-                ratingBar.setRating(0.0f);
-            }else{
-                String rating = AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),"");
-
-                if(rating.equals("-20")){
-                    ratingBar.setRating(0.5f);
-                }else if(rating.equals("-10")){
-                    ratingBar.setRating(1.0f);
-                }else if(rating.equals("-5")){
-                    ratingBar.setRating(1.5f);
-                }else if(rating.equals("0")){
-                    ratingBar.setRating(2.0f);
-                }else if(rating.equals("10")){
-                   ratingBar.setRating(2.5f);
-                }else if(rating.equals("20")){
-                    ratingBar.setRating(3.0f);
-                }else if(rating.equals("30")){
-                   ratingBar.setRating(3.5f);
-                }else if(rating.equals("40")){
-                   ratingBar.setRating(4.0f);
-                }else if(rating.equals("50")){
-                   ratingBar.setRating(4.5f);
-                }else if(rating.equals("60")){
-                    ratingBar.setRating(5.0f);
-                }
-
-                if (flat.getRate()>60){
-                    smallRateBar.setRating(1.0f);
-                }if (flat.getRate()>120){
-                    smallRateBar.setRating(2.0f);
-                } if (flat.getRate()>180){
-                    smallRateBar.setRating(3.0f);
-                } if (flat.getRate()>240){
-                    smallRateBar.setRating(3.0f);
-                } if (flat.getRate()>320){
-                    smallRateBar.setRating(4.0f);
-                } if (flat.getRate()>380){
-                    smallRateBar.setRating(5.0f);
-                }
-            }
+            setupUserDataComeFromProduct();
         }
-
-
-
 
 
         recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
@@ -313,6 +138,174 @@ public class JobberAccountFragment extends BaseFragment implements JobberAccount
 
             }
         });
+    }
+
+    private void setupUserDataComeFromProduct() {
+        flat = getArguments().getParcelable(Constants.BundleKeys.USER_ID);
+        textViewEmail.setText(flat.getEmail());
+        textViewAddress.setText(flat.getAddress());
+        textViewPhone.setText(flat.getPhone_no());
+        textViewName.setText(flat.getUsername());
+        Picasso.with(getActivity())
+                .load(Urls.IMAGE_URL +flat.getUserImage())
+                .placeholder(R.drawable.backgroundprof)
+                .into(profileImage);
+        if(flat.getVerifying_mark().equals("1")){
+            verifyImage.setVisibility(View.VISIBLE);
+        }else{
+            verifyImage.setVisibility(View.GONE);
+        }
+        if(flat.getGender().equals("1")){
+            textViewGender.setText("male");
+        }else if(flat.getGender().equals("2")){
+            textViewGender.setText("female");
+        }else{
+            textViewGender.setText("None");
+        }
+        presenter.performGetUserFlats(flat.getUserId());
+        userAccountId = flat.getUserId();
+        if (TextUtils.isEmpty(AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),""))){
+            ratingBar.setRating(0.0f);
+        }else{
+            String rating = AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),"");
+
+            getCashRateBar(rating);
+
+            if (flat.getRate()>60){
+                smallRateBar.setRating(1.0f);
+            }if (flat.getRate()>120){
+                smallRateBar.setRating(2.0f);
+            } if (flat.getRate()>180){
+                smallRateBar.setRating(3.0f);
+            } if (flat.getRate()>240){
+                smallRateBar.setRating(3.0f);
+            } if (flat.getRate()>320){
+                smallRateBar.setRating(4.0f);
+            } if (flat.getRate()>380){
+                smallRateBar.setRating(5.0f);
+            }
+        }
+    }
+
+    private void setupUserDataComeFromJobberUser() {
+        jobberUsers= getArguments().getParcelable(Constants.BundleKeys.USER_ID);
+        textViewEmail.setText(jobberUsers.getEmail());
+        textViewAddress.setText(jobberUsers.getAddress());
+        textViewPhone.setText(jobberUsers.getPhone_no());
+        textViewName.setText(jobberUsers.getUser_name());
+        Picasso.with(getActivity())
+                .load(Urls.IMAGE_URL +jobberUsers.getUser_image())
+                .placeholder(R.drawable.backgroundprof)
+                .into(profileImage);
+
+        if(jobberUsers.getVerifying_mark().equals("1")){
+            verifyImage.setVisibility(View.VISIBLE);
+        }else{
+            verifyImage.setVisibility(View.GONE);
+        }
+
+        if(jobberUsers.getGender().equals("1")){
+            textViewGender.setText("male");
+        }else if(jobberUsers.getGender().equals("2")){
+            textViewGender.setText("female");
+        }else{
+            textViewGender.setText("None");
+        }
+        presenter.performGetUserFlats(String.valueOf(jobberUsers.getId()));
+        userAccountId =String.valueOf(jobberUsers.getId());
+        if (TextUtils.isEmpty(AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),""))){
+            ratingBar.setRating(0.0f);
+        }else{
+            String rating = AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),"");
+
+          getCashRateBar(rating);
+        }
+
+        if (jobberUsers.getRate()>60){
+            smallRateBar.setRating(1.0f);
+        }if (jobberUsers.getRate()>120){
+            smallRateBar.setRating(2.0f);
+        } if (jobberUsers.getRate()>180){
+            smallRateBar.setRating(3.0f);
+        } if (jobberUsers.getRate()>240){
+            smallRateBar.setRating(3.0f);
+        } if (jobberUsers.getRate()>320){
+            smallRateBar.setRating(4.0f);
+        } if (jobberUsers.getRate()>380){
+            smallRateBar.setRating(5.0f);
+        }
+
+    }
+
+    private void setupUserDataComeFromMyFavoriteClass() {
+        myFavorite= getArguments().getParcelable(Constants.BundleKeys.USER_ID);
+        textViewEmail.setText(myFavorite.getEmail());
+        textViewAddress.setText(myFavorite.getAddress());
+        textViewPhone.setText(myFavorite.getPhoneNo());
+        textViewName.setText(myFavorite.getUsername());
+        if(myFavorite.getVerifying_mark().equals("1")){
+            verifyImage.setVisibility(View.VISIBLE);
+        }else{
+            verifyImage.setVisibility(View.GONE);
+        }
+        Picasso.with(getActivity())
+                .load(Urls.IMAGE_URL +myFavorite.getUserImage())
+                .placeholder(R.drawable.backgroundprof)
+                .into(profileImage);
+        if(myFavorite.getGender().equals("1")){
+            textViewGender.setText("male");
+        }else if(myFavorite.getGender().equals("2")){
+            textViewGender.setText("female");
+        }else{
+            textViewGender.setText("None");
+        }
+        presenter.performGetUserFlats(myFavorite.getUser_id());
+        userAccountId = myFavorite.getUser_id();
+        if (TextUtils.isEmpty(AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),""))){
+            ratingBar.setRating(0.0f);
+        }else{
+            String rating = AppPreferences.getString(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0")+userAccountId,getActivity(),"");
+
+           getCashRateBar(rating);
+        }
+
+        if (myFavorite.getRate()>60){
+            smallRateBar.setRating(1.0f);
+        }if (myFavorite.getRate()>120){
+            smallRateBar.setRating(2.0f);
+        } if (myFavorite.getRate()>180){
+            smallRateBar.setRating(3.0f);
+        } if (myFavorite.getRate()>240){
+            smallRateBar.setRating(3.0f);
+        } if (myFavorite.getRate()>320){
+            smallRateBar.setRating(4.0f);
+        } if (myFavorite.getRate()>380){
+            smallRateBar.setRating(5.0f);
+        }
+    }
+
+    private void getCashRateBar(String rating) {
+        if(rating.equals("-20")){
+            ratingBar.setRating(0.5f);
+        }else if(rating.equals("-10")){
+            ratingBar.setRating(1.0f);
+        }else if(rating.equals("-5")){
+            ratingBar.setRating(1.5f);
+        }else if(rating.equals("0")){
+            ratingBar.setRating(2.0f);
+        }else if(rating.equals("10")){
+            ratingBar.setRating(2.5f);
+        }else if(rating.equals("20")){
+            ratingBar.setRating(3.0f);
+        }else if(rating.equals("30")){
+            ratingBar.setRating(3.5f);
+        }else if(rating.equals("40")){
+            ratingBar.setRating(4.0f);
+        }else if(rating.equals("50")){
+            ratingBar.setRating(4.5f);
+        }else if(rating.equals("60")){
+            ratingBar.setRating(5.0f);
+        }
     }
 
     @Override
@@ -387,7 +380,6 @@ public class JobberAccountFragment extends BaseFragment implements JobberAccount
         Message.message(getActivity(),result);
         if(customeDialogRate !=null){
             customeDialogRate.hideDialog();
-
         }
     }
 
@@ -426,8 +418,6 @@ public class JobberAccountFragment extends BaseFragment implements JobberAccount
     @Override
     public void onClickUnFavorite(Flat flat) {
         presenter.performDeleteItemFavorite(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0"),flat.getId(),"delete");
-
-
     }
     @Override
     public void onClickMenu(final Flat flat) {

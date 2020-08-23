@@ -78,6 +78,7 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatsHolder> i
                 .load(Urls.IMAGE_URL+flat.getUserImage())
                 .placeholder(R.drawable.backgroundprof)
                 .into(holder.imageView);
+        holder.verifyImage.setVisibility(View.GONE);
         holder.name.setText(flat.getUsername());
         Resources res = context.getResources();
         holder.priceFlatItem.setText(res.getString(R.string.price) +":"+flat.getFlatPrice());
@@ -85,6 +86,11 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatsHolder> i
         holder.expandIcon.setVisibility(flat.getFlatDscription().length()>150?View.VISIBLE:View.INVISIBLE);
         holder.date.setText(flat.getPublishDate());
         holder.location.setText(flat.getFlatLocation());
+        if(flat.getVerifying_mark().equals("1")){
+            holder.verifyImage.setVisibility(View.VISIBLE);
+        }else{
+            holder.verifyImage.setVisibility(View.GONE);
+        }
         ImageAdapter imageAdapter = new ImageAdapter(flat.getFlatsImage(),context,this);
         holder.recyclerView.setAdapter(imageAdapter);
 
@@ -119,7 +125,7 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatsHolder> i
         TextView name,date,location,descroption,priceFlatItem;
 
         CircleImageView imageView;
-        ImageView menu,expandIcon,favImage;
+        ImageView menu,expandIcon,favImage,verifyImage;
         RecyclerView recyclerView;
         boolean checkExpanText=true;
         boolean toggleCheckFav = true;
@@ -138,6 +144,7 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatsHolder> i
             location = itemView.findViewById(R.id.location_flat_item);
             priceFlatItem = itemView.findViewById(R.id.price_flat_item);
             favImage = itemView.findViewById(R.id.fav_icon);
+            verifyImage = itemView.findViewById(R.id.verify_image);
             menu = itemView.findViewById(R.id.menu_flat_item);
             imageView = itemView.findViewById(R.id.imageview);
             recyclerView = itemView.findViewById(R.id.recycler_image_item);

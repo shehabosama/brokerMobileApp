@@ -75,7 +75,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:text="Rent"
+                    android:text="@string/rent"
                     android:textColor="@color/black"
                     android:backgroundTint="@color/whiteTextColor"
                     android:buttonTint="@color/black"
@@ -85,7 +85,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:text="Conveyance"
+                    android:text="@string/conveyance"
                     android:backgroundTint="@color/whiteTextColor"
                     android:buttonTint="@color/black"
                     android:textColor="@color/black"
@@ -113,7 +113,7 @@
                 android:drawableRight="@drawable/ic_add_location_black_24dp"
                 android:drawablePadding="-20dp"
                 android:paddingRight="5dp"
-                android:text="Add Location"
+                android:text="@string/add_location"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 />
@@ -139,7 +139,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:text="flat"
+                    android:text="@string/flats"
                     android:textColor="@color/black"
                     android:backgroundTint="@color/whiteTextColor"
                     android:buttonTint="@color/black"
@@ -149,7 +149,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:text="land"
+                    android:text="@string/lands"
                     android:backgroundTint="@color/whiteTextColor"
                     android:buttonTint="@color/black"
                     android:textColor="@color/black"
@@ -173,7 +173,7 @@
                 android:layout_height="40dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:hint="Price $"
+                android:hint="@string/price_publish"
                 android:textColor="@color/black"
                 android:textColorHint="#0F0F0F"
                 android:inputType="numberDecimal"

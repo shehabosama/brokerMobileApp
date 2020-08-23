@@ -172,26 +172,26 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         return super.onOptionsItemSelected(item);
     }
 
-    private void checkPermissionAudio() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//    private void checkPermissionAudio() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//
+//            if (ContextCompat.checkSelfPermission(this,
+//                    Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+//
+//                ActivityCompat.requestPermissions(this,
+//                        new String[]{Manifest.permission.RECORD_AUDIO},
+//                        REQUEST_MICROPHONE);
+//            }
+//        }
+//    }
 
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.RECORD_AUDIO},
-                        REQUEST_MICROPHONE);
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == REQUEST_MICROPHONE){
-
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if(requestCode == REQUEST_MICROPHONE){
+//
+//        }
+//    }
 
     private void UserMenuSelector(MenuItem item) {
         switch(item.getItemId()){
@@ -253,7 +253,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initializeViews() {
-        checkPermissionAudio();
         FirebaseApp.initializeApp(getApplicationContext());
         startService(new Intent(this, FCMRegisterationService.class));
         helper = new myDbAdapter(this);
@@ -346,6 +345,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.e("MainActivity", "onActivityResult: i am here" );
         if(requestCode == 0){
             if(resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS){
                // Toast.makeText(getApplicationContext(),"Already Installed", Toast.LENGTH_LONG).show();
@@ -354,7 +354,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 //                installIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
 //                startActivity(installIntent);
 //                Toast.makeText(getApplicationContext(),"Installed Now", Toast.LENGTH_LONG).show();
+
             }
+        }else{
+            new ProfileFragment().onActivityResult(requestCode, resultCode, data);
         }
     }
     @SuppressLint("ClickableViewAccessibility")

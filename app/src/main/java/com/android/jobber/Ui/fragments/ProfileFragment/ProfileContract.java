@@ -19,6 +19,7 @@ public interface ProfileContract {
 
         void performUpdateInformation(String userId,String userName,String userAddress,String gender,String phoneNumber,String email,String image,String password);
         void performUpdateProfilePhoto(Uri uri, String userId, Context context,String phone ,String email, String gender,String name ,String address);
+        void performSendRequestVerificationMark(Uri uri ,Context context, String reason);
 
     }
 }

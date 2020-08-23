@@ -70,4 +70,21 @@
     <string name="Delete_Post">مسح المنتج</string>
     <string name="Report">ابلاغ</string>
     <string name="Book_now">حجز الان</string>
+    <string name="from">من</string>
+    <string name="to">الي</string>
+    <string name="type_of_product">نوع النتج</string>
+    <string name="flats">شقه</string>
+    <string name="lands">ارض</string>
+    <string name="all">الكل</string>
+    <string name="ownership_type">Oنوع التمليك</string>
+    <string name="rent">ايجار</string>
+    <string name="conveyance">تمليك</string>
+    <string name="country">البلد</string>
+    <string name="filter_now">فلتره الان</string>
+    <string name="add_location">اضف منوقعا</string>
+    <string name="price_publish">السعر $</string>
+    <string name="request_verification_mark">طلب توثيق حساب</string>
+    <string name="rate_account">تقييم الحساب</string>
+    <string name="write_reason_to_request_this_feature">اكتب سبب طلبك للتوثيق الحساب</string>
+    <string name="send_the_request">ارسال الطلب</string>
 </resources>

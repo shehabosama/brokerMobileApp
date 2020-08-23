@@ -1,6 +1,7 @@
 package com.android.jobber.Ui.fragments.ProfileFragment;
 
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,8 +23,9 @@ import com.android.jobber.R;
 import com.android.jobber.common.HelperStuffs.AppPreferences;
 import com.android.jobber.common.HelperStuffs.Constants;
 import com.android.jobber.common.HelperStuffs.Message;
+import com.android.jobber.common.HelperStuffs.PermissionHandlerFragment;
+import com.android.jobber.common.HelperStuffs.PermissionsListener;
 import com.android.jobber.common.SqlHelper.myDbAdapter;
-import com.android.jobber.common.base.BaseFragment;
 import com.android.jobber.common.network.Urls;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,31 +44,31 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileFragment extends BaseFragment implements ProfileContract.View,ProfileContract.Model.onFinishedListener{
-
+public class ProfileFragment extends PermissionHandlerFragment implements ProfileContract.View,
+        ProfileContract.Model.onFinishedListener,
+        PermissionsListener {
 
     private CircleImageView profileImage;
-    private TextView textViewName,textViewPhone,textViewGender,textViewEmail,textViewAddress,textViewSettings;
+    private ImageView verifyImage;
+    private TextView textViewName,textViewPhone,textViewGender,textViewEmail,textViewAddress,textViewSettings,verificationMark , personalTextView;
     private myDbAdapter myDbAdapter;
     private Uri orgUri;
     ProgressDialog progressDialog;
     PresenterProfile presenter;
+    CustomeDialogRequstVerificationMark customeDialogRequstVerificationMark;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
-
         initializeViews(view);
         setListeners();
         return view;
@@ -73,8 +76,8 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
 
     @Override
     protected void initializeViews(View v) {
-
-        
+        checkPermissionAndRequest();
+        customeDialogRequstVerificationMark = new CustomeDialogRequstVerificationMark();
         progressDialog = new ProgressDialog(getActivity());
         textViewGender =v.findViewById(R.id.gender_type);
         textViewPhone = v.findViewById(R.id.phone);
@@ -83,12 +86,24 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
         textViewName = v.findViewById(R.id.username);
         textViewAddress = v.findViewById(R.id.address);
         textViewSettings = v.findViewById(R.id.info);
+        verifyImage = v.findViewById(R.id.verify);
+        personalTextView = v.findViewById(R.id.personal);
+        verificationMark = v.findViewById(R.id.request_verification_mark);
         myDbAdapter = new myDbAdapter(getActivity());
         presenter = new PresenterProfile(this,this,myDbAdapter);
+        setupUserData();
+    }
+
+    public void setupUserData(){
         textViewAddress.setText(myDbAdapter.getEmployeeName("address"));
         textViewEmail.setText(myDbAdapter.getEmployeeName("email"));
         textViewName.setText(myDbAdapter.getEmployeeName("name"));
         textViewPhone.setText("0"+myDbAdapter.getEmployeeName("phone"));
+        if(myDbAdapter.getEmployeeName("verification_code").equals("1")){
+            verifyImage.setVisibility(View.VISIBLE);
+        }else{
+            verifyImage.setVisibility(View.GONE);
+        }
         if(myDbAdapter.getEmployeeName("gender").equals("1")){
             textViewGender.setText("male");
         }else if(myDbAdapter.getEmployeeName("gender").equals("2")){
@@ -100,8 +115,12 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
                 .load(Urls.IMAGE_URL +myDbAdapter.getEmployeeName("image"))
                 .placeholder(R.drawable.backgroundprof)
                 .into(profileImage);
-
-
+    }
+    public void checkPermissionAndRequest(){
+        checkPermissions(getActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO);
     }
     private void CropActivity()// to  open the gallery or camera or any app can take a photo  and select the photo and crop the photo and submit crop
     {
@@ -116,35 +135,46 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
+        //System.out.println("onActivityResult Main Activity"+data.getData());
+        Log.e(TAG, "onActivityResult: helllllllllllo" );
+        if(data.getData()!=null){
+            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                if (resultCode == RESULT_OK) {
 
-                orgUri = result.getUri();
-                if (orgUri != null)
-                {
-                    profileImage.setImageURI(orgUri);
-                //    runCloudTextRecognition();
-                    presenter.performUpdateProfilePhoto(orgUri, AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0"),getActivity()
-                    ,myDbAdapter.getEmployeeName("phone"),myDbAdapter.getEmployeeName("email"),myDbAdapter.getEmployeeName("gender"),myDbAdapter.getEmployeeName("name")
-                    ,myDbAdapter.getEmployeeName("address"));
+                    orgUri = result.getUri();
+                    if (orgUri != null)
+                    {
+                        profileImage.setImageURI(orgUri);
+                        //    runCloudTextRecognition();
+                        presenter.performUpdateProfilePhoto(orgUri, AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0"),getActivity()
+                                ,myDbAdapter.getEmployeeName("phone"),myDbAdapter.getEmployeeName("email"),myDbAdapter.getEmployeeName("gender"),myDbAdapter.getEmployeeName("name")
+                                ,myDbAdapter.getEmployeeName("address"));
+                    }
                 }
-
-            }else
-            {
-
+            }else{
+                System.out.println("onActivityResult Main Activity"+data.getData());
+                new CustomeDialogRequstVerificationMark().onActivityResult(requestCode, resultCode, data);
             }
-
-
-
+        }else{
+            Message.message(getActivity() ,"Something went wrong");
         }
+
     }
 
     @Override
     protected void setListeners() {
         textViewSettings.setOnClickListener(textViewSettingsListener);
         profileImage.setOnClickListener(profileImageListener);
+        verificationMark.setOnClickListener(verificationMarkListener);
+        personalTextView.setOnClickListener(textViewSettingsListener);
     }
+    private View.OnClickListener verificationMarkListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            customeDialogRequstVerificationMark.showDialog(getActivity(),presenter);
+        }
+    };
     private View.OnClickListener profileImageListener= new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -161,7 +191,7 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
 
     @Override
     public void onFinished(String result) {
-        Message.message(getActivity(),"Update Successfully");
+        Message.message(getActivity(),result);
         if(result.equals("Uploaded Profile image successfully")){
 
         }
@@ -201,7 +231,6 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
         return BitmapFactory.decodeStream(ctx.getContentResolver()
                 .openInputStream(uri), null, bmOptions);
     }
-
 
     private void runCloudTextRecognition() {
        // mCloudButton.setEnabled(false);
@@ -254,5 +283,14 @@ public class ProfileFragment extends BaseFragment implements ProfileContract.Vie
                 }
             }
         }
+    }
+    @Override
+    public void onPermissionGranted(String[] permissions) {
+
+    }
+
+    @Override
+    public void onPermissionDenied(String[] permissions) {
+
     }
 }

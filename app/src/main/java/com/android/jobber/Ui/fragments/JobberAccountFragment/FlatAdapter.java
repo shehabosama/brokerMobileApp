@@ -77,6 +77,12 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatsHolder> i
                 .load(Urls.IMAGE_URL+flat.getUserImage())
                 .placeholder(R.drawable.backgroundprof)
                 .into(holder.imageView);
+        holder.verifyImage.setVisibility(View.GONE);
+        if(flat.getVerifying_mark().equals("1")){
+            holder.verifyImage.setVisibility(View.VISIBLE);
+        }else{
+            holder.verifyImage.setVisibility(View.GONE);
+        }
         holder.name.setText(flat.getUsername());
         holder.descroption.setText(flat.getFlatDscription());
         holder.expandIcon.setVisibility(flat.getFlatDscription().length()>150?View.VISIBLE:View.INVISIBLE);
@@ -116,7 +122,7 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatsHolder> i
         TextView name,date,location,descroption;
 
         CircleImageView imageView;
-        ImageView menu,expandIcon,favImage;
+        ImageView menu,expandIcon,favImage,verifyImage;
         RecyclerView recyclerView;
         boolean checkExpanText=true;
         boolean toggleCheckFav = true;
@@ -135,6 +141,7 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatsHolder> i
             location = itemView.findViewById(R.id.location_flat_item);
             favImage = itemView.findViewById(R.id.fav_icon);
             menu = itemView.findViewById(R.id.menu_flat_item);
+            verifyImage = itemView.findViewById(R.id.verify_image);
             imageView = itemView.findViewById(R.id.imageview);
             recyclerView = itemView.findViewById(R.id.recycler_image_item);
             recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));

@@ -32,6 +32,8 @@ public class LoginResponse
         public int phoneNo;
         @SerializedName("gender")
         public int gender;
+        @SerializedName("verifying_mark")
+        public int verification_code;
 
     }
 }

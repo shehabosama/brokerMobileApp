@@ -33,6 +33,9 @@ public class Flat implements Parcelable {
     @SerializedName("username")
     @Expose
     private String username;
+    @SerializedName("verifying_mark")
+    @Expose
+    private String verifying_mark;
     @SerializedName("email")
     @Expose
     private String email;
@@ -66,6 +69,14 @@ public class Flat implements Parcelable {
     @SerializedName("gender")
     @Expose
     private String gender;
+
+    public String getVerifying_mark() {
+        return verifying_mark;
+    }
+
+    public void setVerifying_mark(String verifying_mark) {
+        this.verifying_mark = verifying_mark;
+    }
 
     public int getRate() {
         return rate;

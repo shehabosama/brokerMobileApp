@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">joBBer</string>
+    <string name="app_name">Samsar</string>
     <string name="register">REGISTER</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
@@ -69,5 +69,22 @@
     <string name="Delete_Post">Delete Post</string>
     <string name="Report">Report</string>
     <string name="Book_now">Book now</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="type_of_product">Type of Product</string>
+    <string name="flats">flats</string>
+    <string name="lands">Lands</string>
+    <string name="all">All</string>
+    <string name="ownership_type">Ownership type</string>
+    <string name="rent">Rent</string>
+    <string name="conveyance">Conveyance</string>
+    <string name="country">Country</string>
+    <string name="filter_now">Filter Now</string>
+    <string name="add_location">Add Location</string>
+    <string name="price_publish">price $</string>
+    <string name="request_verification_mark">Request verification mark</string>
+    <string name="rate_account">Rate Account</string>
+    <string name="write_reason_to_request_this_feature">Write reason To request this feature</string>
+    <string name="send_the_request">Send the request</string>
 
 </resources>

@@ -29,4 +29,6 @@ public class User  {
     public int gender;
     @SerializedName("user_type")
     public String userType;
+    @SerializedName("verifying_mark")
+    public int verification_code;
 }

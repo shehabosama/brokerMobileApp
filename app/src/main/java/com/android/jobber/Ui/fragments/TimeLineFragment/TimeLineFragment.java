@@ -361,14 +361,12 @@ public class TimeLineFragment extends BaseFragment implements TimeLineContract.V
         builder.show();
     }
     @Override
-    public void onClickFavorite(Flat car) {
-        presenter.performAddItemFavorite(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0"),car.getId());
+    public void onClickFavorite(Flat flat) {
+        presenter.performAddItemFavorite(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0"),flat.getId());
     }
     @Override
     public void onClickUnFavorite(Flat flat) {
         presenter.performDeleteItemFavorite(AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0"),flat.getId(),"delete");
-
-
     }
     @Override
     public void onClickPhoto(FlatsImage flatsImage) {
