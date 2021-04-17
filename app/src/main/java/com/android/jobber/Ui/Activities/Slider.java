@@ -16,6 +16,7 @@ import com.android.jobber.Adapters.ViewPagerAdapter;
 import com.android.jobber.R;
 import com.android.jobber.Ui.Activities.Login.LoginActivity;
 import com.android.jobber.Ui.Activities.MainActivity.MainActivity;
+import com.android.jobber.common.HelperStuffs.AppPreferences;
 import com.android.jobber.common.SqlHelper.myDbAdapter;
 import com.android.jobber.common.base.BaseActivity;
 
@@ -30,6 +31,7 @@ public class Slider extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initTheme();
         setContentView(R.layout.slider_activity);
         initializeViews();
         setListeners();
@@ -48,7 +50,7 @@ public class Slider extends BaseActivity {
         button = findViewById(R.id.next_btn);
         button.setVisibility(View.GONE);
         imageView = findViewById(R.id.image_next);
-        final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+        final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this,Slider.this);
         viewPager.setAdapter(viewPagerAdapter);
         String data = helper.getData();
 

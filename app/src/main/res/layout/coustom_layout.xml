@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:text="hello"
         android:id="@+id/text_test"
-        android:textColor="#fff"
+        android:textColor="?attr/textColor"
         android:textSize="20dp"
         android:lineSpacingExtra="10dp"
         android:layout_marginLeft="30dp"
@@ -25,5 +25,71 @@
         android:src="@drawable/logo_chat"
         android:layout_gravity="center_horizontal"
         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:id="@+id/lin_mode"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/radio_group_mode">
+                <RadioButton
+                    android:textColor="?attr/textColor"
+                    android:buttonTint="?attr/textColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dark mode"
+                    android:layout_marginHorizontal="30dp"
+                    android:id="@+id/radio_dark"/>
+                <RadioButton
+                    android:textColor="?attr/textColor"
+                    android:buttonTint="?attr/textColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Light mode"
+                    android:layout_marginHorizontal="20dp"
+                    android:id="@+id/radio_light"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="155dp"
+                android:id="@+id/imageL"
+                android:background="@drawable/dark_pic"
+                android:layout_marginHorizontal="5dp"
+                />
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageD"
+                android:layout_gravity="end"
+                android:background="@drawable/light_pic"
+                android:layout_marginHorizontal="5dp"
+
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
 
 </LinearLayout>

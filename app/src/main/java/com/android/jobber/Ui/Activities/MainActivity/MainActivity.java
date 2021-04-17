@@ -43,6 +43,7 @@ import com.android.jobber.Ui.fragments.AllJobbersFragemnts.AllJobberFragment;
 import com.android.jobber.Ui.fragments.ChatRoomFragment.Chat_rooms;
 import com.android.jobber.Ui.fragments.FavoritesFragment.FavoritesFragment;
 import com.android.jobber.Ui.fragments.Installment_fragmet_two;
+import com.android.jobber.Ui.fragments.InvitationFragment.InvitationFragment;
 import com.android.jobber.Ui.fragments.PrdouctRequestsFragment.PrdouctRequestsFragment;
 import com.android.jobber.Ui.fragments.ProfileFragment.ProfileFragment;
 import com.android.jobber.Ui.fragments.PublishingFragment.PublishingFragment;
@@ -224,8 +225,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 break;
             case R.id.Invitation_nav:
                 getSupportActionBar().setTitle("Invitation");
-                Installment_fragmet_two blankFragment= new Installment_fragmet_two();
-                getSupportFragmentManager().beginTransaction().replace(R.id.container_body,blankFragment,"shehahab3").commit();
+                InvitationFragment invitationFragment= new InvitationFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container_body,invitationFragment,"shehahab3").commit();
                 mDrawerLayout.closeDrawers();
                 break;
             case R.id.logout_nav:

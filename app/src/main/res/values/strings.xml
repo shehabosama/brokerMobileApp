@@ -33,9 +33,9 @@
     <string name="user">User"      "</string>
     <string name="send_verification_code">Send Verification Code</string>
     <string name="email_address">Email address"  " :</string>
- <string name="phone_number_acc">phone number"   " :</string>
-          <string name="address">Address"        " :</string>
-           <string name="gender">Gender"         " :</string>
+    <string name="phone_number_acc">phone number"   " :</string>
+    <string name="address">Address"        " :</string>
+    <string name="gender">Gender"         " :</string>
     <string name="account_settings">" "Account settings</string>
     <string name="personal_information">Personal information</string>
     <string name="support">" "Support</string>

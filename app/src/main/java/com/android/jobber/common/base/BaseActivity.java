@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.android.jobber.R;
+import com.android.jobber.common.HelperStuffs.AppPreferences;
 
 /**
  * Created by peter on 19/05/18.
@@ -49,6 +50,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    public void initTheme(){
+        if(AppPreferences.getString("mode_key",this,"L").equals("D")){
+            setTheme(R.style.DarkTheme);
+        }else{
+            setTheme(R.style.LightTheme);
+        }
+    }
     protected void setToolbarColor(Toolbar toolbar, int color) {
         toolbar.setBackgroundColor(color);
     }
