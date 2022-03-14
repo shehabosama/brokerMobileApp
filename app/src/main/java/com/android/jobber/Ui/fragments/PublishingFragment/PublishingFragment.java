@@ -160,6 +160,7 @@ public class PublishingFragment extends PermissionHandlerFragment implements
         if(resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case FILE_REQUEST_CODE:
+                    Log.e(TAG, "onActivityResult: "+ "i am hereeeeeeeeeeeeeeeeeeeeeeeeee" );
                     ArrayList<MediaFile> files = data.getParcelableArrayListExtra(FilePickerActivity.MEDIA_FILES);
                     uri_photo = new ArrayList<>();
                     for (int i = 0; i < files.size(); i++) {

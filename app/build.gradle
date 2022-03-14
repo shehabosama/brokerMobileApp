@@ -11,9 +11,17 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
+        debug {
+            buildConfigField 'String', "ApiKey", KEY
+            resValue 'string', "api_key", KEY
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "ApiKey", KEY
+            resValue 'string', "api_key", KEY
         }
     }
 }
@@ -46,6 +54,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
     testImplementation "com.google.truth:truth:1.0.1"
     androidTestImplementation "com.google.truth:truth:1.0.1"
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
 
 
 }

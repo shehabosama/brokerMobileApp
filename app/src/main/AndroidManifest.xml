@@ -91,7 +91,7 @@
         <activity android:name="com.android.jobber.Ui.Activities.ForgetPasswordActivity.ForgetPassword" />
         <activity android:name="com.android.jobber.Ui.Activities.ChatActivity.Chat_activity" />
         <activity android:name="com.android.jobber.Ui.Activities.RegisterActivity.RegisterActivity" />
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCdsBzQrHiM6zAfQuS5XUrkQY96gcN6CX0"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/api_key"/>
     </application>
 
 </manifest>

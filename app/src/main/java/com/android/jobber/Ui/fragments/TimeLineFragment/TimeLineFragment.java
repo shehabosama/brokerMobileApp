@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,6 +37,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.google.android.gms.vision.L.TAG;
 
 
 public class TimeLineFragment extends BaseFragment implements TimeLineContract.View,TimeLineContract.Model.onFinishedListener , FlatAdapter.FlatAdapterInterAction {

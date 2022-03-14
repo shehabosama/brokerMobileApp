@@ -1,6 +1,8 @@
 package com.android.jobber.Ui.fragments.TimeLineFragment;
 
 import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,13 @@ import com.android.jobber.common.model.Flats.FlatsImage;
 import com.android.jobber.common.network.Urls;
 import com.squareup.picasso.Picasso;
 
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ServiceHoder> {
@@ -21,7 +30,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ServiceHoder
     private List<FlatsImage> flatsImages;
     private Context context;
     private ImageAdapterInterAction imageAdapterInterAction;
-
+    String path;
     public ImageAdapter(List<FlatsImage> car_images, Context context,ImageAdapterInterAction imageAdapterInterAction) {
         this.flatsImages = car_images;
         this.context = context;
@@ -40,6 +49,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ServiceHoder
     public void onBindViewHolder(@NonNull ImageAdapter.ServiceHoder holder, int position) {
 
         FlatsImage flatsImage = flatsImages.get(position);
+
         Picasso.with(context)
                 .load(Urls.IMAGE_URL+flatsImage.getImageName()).placeholder(R.drawable.ic_launcher_foreground)
                 .into(holder.imageView);
@@ -47,6 +57,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ServiceHoder
 
 
     }
+
 
 
     public interface ImageAdapterInterAction{

@@ -97,6 +97,7 @@ public class PresenterLogin implements LoginContract.Presenter {
 
     @Override
     public void performUpdateToken(String userId, String token) {
+        Log.e(TAG, "performUpdateToken: "+token +" id: "+userId );
         if(TextUtils.isEmpty(userId)||TextUtils.isEmpty(token)){
             mModel.onFinished("Something Went Wrong...");
         }else{
@@ -108,7 +109,8 @@ public class PresenterLogin implements LoginContract.Presenter {
 
                 @Override
                 public void onFailure(Call<MainResponse> call, Throwable t) {
-
+                    Log.e(TAG, "onFailure: "+ t.getLocalizedMessage() );
+                        mModel.onFinished(t.getMessage());
                 }
             });
         }
@@ -134,10 +136,12 @@ public class PresenterLogin implements LoginContract.Presenter {
     private void getUserToken(final String userId) {
 
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+
             @Override
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
                 if (task.isSuccessful()) {
                     String token = task.getResult().getToken();
+                    Log.e(TAG, "onComplete: token: "+ token);
                     AppPreferences.setString(Constants.AppPreferences.USER_TOKEN, token, context);
                     performUpdateToken(userId,token);
 

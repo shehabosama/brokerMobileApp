@@ -507,6 +507,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             textToSpeech.shutdown();
         }
     }
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void speakOut(){
         textToSpeech.speak(textRekognation,TextToSpeech.QUEUE_FLUSH,null,null);

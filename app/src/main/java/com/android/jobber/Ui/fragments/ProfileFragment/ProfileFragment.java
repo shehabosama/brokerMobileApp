@@ -157,7 +157,7 @@ public class ProfileFragment extends PermissionHandlerFragment implements Profil
                 new CustomeDialogRequstVerificationMark().onActivityResult(requestCode, resultCode, data);
             }
         }else{
-            Message.message(getActivity() ,"Something went wrong");
+          //  Message.message(getActivity() ,"Something went wrong");
         }
 
     }
