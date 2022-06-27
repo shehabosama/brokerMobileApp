@@ -355,7 +355,6 @@ public class TimeLineFragment extends BaseFragment implements TimeLineContract.V
                                 flat.getUserId(),
                                 flat.getId(),
                                 AppPreferences.getString(Constants.AppPreferences.USER_TOKEN,getActivity(),""),String.valueOf(ts.getTime()));
-
                         break;
                 }
 

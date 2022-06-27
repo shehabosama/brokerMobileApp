@@ -8,23 +8,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
 import com.android.jobber.R;
 import com.android.jobber.common.HelperStuffs.Message;
-import com.android.jobber.common.SqlHelper.myDbAdapter;
 import static com.android.jobber.common.HelperStuffs.Constants.BundleKeys.M_URI;
 import static android.content.ContentValues.TAG;
-
 public class CustomeDialogRequstVerificationMark extends DialogFragment {
 
 

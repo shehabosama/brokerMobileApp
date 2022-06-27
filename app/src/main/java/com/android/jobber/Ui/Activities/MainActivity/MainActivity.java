@@ -1,5 +1,7 @@
 package com.android.jobber.Ui.Activities.MainActivity;
 
+import static com.android.jobber.common.HelperStuffs.Constants.BundleKeys.M_URI;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -348,6 +350,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         super.onActivityResult(requestCode, resultCode, data);
         Log.e("MainActivity", "onActivityResult: i am here" );
         if(requestCode == 0){
+            Log.e("MainActivity", "onActivityResult: i am here inside first statement" );
             if(resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS){
                // Toast.makeText(getApplicationContext(),"Already Installed", Toast.LENGTH_LONG).show();
             } else {
@@ -358,6 +361,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
             }
         }else{
+            try {
+                M_URI = data.getData();
+            }catch (NullPointerException ex){
+               ex.printStackTrace();
+            }
             new ProfileFragment().onActivityResult(requestCode, resultCode, data);
         }
     }

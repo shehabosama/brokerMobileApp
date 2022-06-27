@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -136,29 +137,34 @@ public class ProfileFragment extends PermissionHandlerFragment implements Profil
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //System.out.println("onActivityResult Main Activity"+data.getData());
-        Log.e(TAG, "onActivityResult: helllllllllllo" );
-        if(data.getData()!=null){
-            if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-                if (resultCode == RESULT_OK) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
 
-                    orgUri = result.getUri();
-                    if (orgUri != null)
-                    {
-                        profileImage.setImageURI(orgUri);
-                        //    runCloudTextRecognition();
-                        presenter.performUpdateProfilePhoto(orgUri, AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getActivity(),"0"),getActivity()
-                                ,myDbAdapter.getEmployeeName("phone"),myDbAdapter.getEmployeeName("email"),myDbAdapter.getEmployeeName("gender"),myDbAdapter.getEmployeeName("name")
-                                ,myDbAdapter.getEmployeeName("address"));
-                    }
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Log.e(TAG, "onActivityResult: in second condition");
+                orgUri = result.getUri();
+                if (orgUri != null) {
+                    profileImage.setImageURI(orgUri);
+                    //    runCloudTextRecognition();
+                    presenter.performUpdateProfilePhoto(orgUri, AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY, getActivity(), "0"), getActivity()
+                            , myDbAdapter.getEmployeeName("phone"), myDbAdapter.getEmployeeName("email"), myDbAdapter.getEmployeeName("gender"), myDbAdapter.getEmployeeName("name")
+                            , myDbAdapter.getEmployeeName("address"));
                 }
+            }
+        }
+
+        try {
+            if(data.getData()!= null){
             }else{
-                System.out.println("onActivityResult Main Activity"+data.getData());
+                System.err.println("onActivityResult Main Activity"+data.getData());
                 new CustomeDialogRequstVerificationMark().onActivityResult(requestCode, resultCode, data);
             }
-        }else{
-          //  Message.message(getActivity() ,"Something went wrong");
+        }catch (NullPointerException ex){
+           // Message.message(getContext().getApplicationContext(),"test");
+            System.err.println("onActivityResult profile Activity"+ex.getLocalizedMessage());
         }
+
+
 
     }
 

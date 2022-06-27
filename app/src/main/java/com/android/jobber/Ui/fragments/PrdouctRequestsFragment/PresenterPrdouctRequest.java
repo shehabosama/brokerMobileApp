@@ -1,7 +1,10 @@
 package com.android.jobber.Ui.fragments.PrdouctRequestsFragment;
 
+import static com.google.android.gms.vision.L.TAG;
+
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.jobber.common.HelperStuffs.AppPreferences;
 import com.android.jobber.common.HelperStuffs.Constants;
@@ -82,7 +85,7 @@ public class PresenterPrdouctRequest implements ProductRequestContract.Presenter
                 @Override
                 public void onFailure(Call<MainResponse> call, Throwable t) {
                     mView.hideProgress();
-
+                    Log.e(TAG, "onFailure: "+t.getLocalizedMessage() );
 
                 }
             });

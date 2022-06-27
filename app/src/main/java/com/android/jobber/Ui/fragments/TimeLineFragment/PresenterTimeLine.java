@@ -1,7 +1,12 @@
 package com.android.jobber.Ui.fragments.TimeLineFragment;
 
-import android.text.TextUtils;
+import static com.google.android.gms.vision.L.TAG;
 
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.android.jobber.common.HelperStuffs.AppPreferences;
+import com.android.jobber.common.HelperStuffs.Constants;
 import com.android.jobber.common.model.Flats.FlatsResponse;
 import com.android.jobber.common.model.MainResponse;
 import com.android.jobber.common.model.MyFavoriteResponse;
@@ -286,6 +291,8 @@ public class PresenterTimeLine implements TimeLineContract.Presenter {
 
     @Override
     public void performOrderRequest(String senderId, String receiverId, String orderId, String token,String timesTamp) {
+        Log.d(TAG, "onFailure: "+timesTamp);
+
         if(TextUtils.isEmpty(senderId)||TextUtils.isEmpty(receiverId)||TextUtils.isEmpty(orderId)||TextUtils.isEmpty(token)|| TextUtils.isEmpty(timesTamp)){
             mModel.onFinished("Something Went Wrong..");
             mView.hideProgress();
@@ -302,6 +309,7 @@ public class PresenterTimeLine implements TimeLineContract.Presenter {
                 @Override
                 public void onFailure(Call<MainResponse> call, Throwable t) {
                     mView.hideProgress();
+                    Log.d(TAG, "onFailure: "+t.getLocalizedMessage());
                 }
             });
         }

@@ -1,6 +1,9 @@
 package com.android.jobber.Ui.fragments.JobberAccountFragment;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.jobber.common.model.Flats.FlatsResponse;
 import com.android.jobber.common.model.MainResponse;
@@ -145,7 +148,7 @@ public class PresenterJobberAccount implements JobberAccountContract.Presenter {
 
             @Override
             public void onFailure(Call<MainResponse> call, Throwable t) {
-
+                Log.e(TAG, "onFailure: "+t.getLocalizedMessage() );
             }
         });
     }

@@ -49,6 +49,16 @@ public class ProductRequestAdapter extends RecyclerView.Adapter<ProductRequestAd
     }
 
     @Override
+    public void onViewRecycled(@NonNull FlatsHolder holder) {
+        Resources res = context.getResources();
+        holder.requestStatus.setTextColor(Color.BLACK);
+        holder.requestStatus.setBackgroundResource(R.drawable.button_pending);
+        holder.requestStatus.setText(res.getString(R.string.pinding));
+
+        super.onViewRecycled(holder);
+    }
+
+    @Override
     public void onBindViewHolder(@NonNull final FlatsHolder holder, int position) {
         final ProductRequest flat = productRequests.get(position);
         holder.setListener(flat);

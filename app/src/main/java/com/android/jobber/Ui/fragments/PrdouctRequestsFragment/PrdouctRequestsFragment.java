@@ -163,9 +163,11 @@ public class PrdouctRequestsFragment extends BaseFragment implements ProductRequ
                         break;
                     case 2:
                        if(TextUtils.isEmpty(option[2])){
-                           Message.message(getActivity(),"is Empty");
+                           Message.message(getActivity(),"you can't delete your request");
                        }else{
-                           Message.message(getActivity(),"still in the range");
+                          // Message.message(getActivity(),"still in the range");
+                           AppPreferences.clearKey(product.getId()+AppPreferences.getString(Constants.AppPreferences.LOGGED_IN_USER_KEY,getContext(),"0"),getContext());
+                           presenter.performDeleteRequest(product.getRequestId());
                        }
 
 
